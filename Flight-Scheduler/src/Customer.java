@@ -3,7 +3,7 @@ import java.util.*;
 public class Customer {
 	private String email;
 	private String password;
-	private ArrayList<Flight> tickets;
+	private ArrayList<Flight> tickets = new ArrayList<>();
 	
 	public Customer(String e, String p) {
 		this.email = e;
@@ -25,10 +25,14 @@ public class Customer {
 	}
 	
 	public void addTicket(Flight f) {
-		this.tickets.add(f);
+		tickets.add(f);
 	}
-	public ArrayList<Flight> viewTickets() {
-		return this.tickets;
+	
+	public void viewTickets() {
+		System.out.println("Customer " + this.email + " tickets: ");
+		for (Flight f : tickets) {
+			System.out.println(f);
+		}
 	}
 
 }
