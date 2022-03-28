@@ -35,7 +35,7 @@ public static void custLogin()
 	String password = sc.nextLine(); 
 
 	if (users.containsKey(email)) {
-		users.get(email).authenticate(email, password);
+		users.get(email).authenticate(password);
 	}
 
 }

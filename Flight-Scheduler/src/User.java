@@ -1,40 +1,69 @@
+/**
+ * User - a class that represents the user of the system
+ * 
+ */
 public class User {
-
-    //email 
-    //passworivate  
-
-    private String email; 
+    /* Attributes declaration */
+    private String email;
     private String password;
 
-    public User (String email, String password) {
+    /**
+     * constructor for the User objects
+     * 
+     * @param email
+     * @param password
+     */
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public String getEmail()
-    {
+    /**
+     * getEmail - getter method for the email of the user
+     * 
+     * @return the email of the user
+     */
+    public String getEmail() {
         return this.email;
     }
 
-    public String getPassword () {
-    
-         return this.password;
+    /**
+     * getPassword - getter method for the password of the user
+     * 
+     * @return the password of the user
+     */
+    public String getPassword() {
+
+        return this.password;
     }
 
-    //setter
-    public void setEmail(String e) {
-        this.email = e;
+    /**
+     * setEmail - setter method for setting/changing the email of the user
+     * 
+     * @param newEmail
+     */
+    public void setEmail(String newEmail) {
+        this.email = newEmail;
 
     }
-    public void setPassword(String p) {
-        this.password= p;
+
+    /**
+     * setPassword - setter method for setting/changing the password of the user
+     * 
+     * @param newPassword
+     */
+    public void setPassword(String newPassword) {
+        this.password = newPassword;
 
     }
 
-
-    public boolean authenticate (String email, String password) {
-        return this.email == email && this.password == password;
+    /**
+     * authenticate - method for authenticating user login
+     * 
+     * @param password
+     * @return true if the user enter a correct password; otherwise false
+     */
+    public boolean authenticate(String password) {
+        return this.password == password;
     }
-
-    
 }
