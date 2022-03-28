@@ -1,13 +1,25 @@
+/**
+ * secrets - a class contains confidential information of the Admin
+ * Will be ignored by git
+ */
 public class secrets {
-    private static String adEmail = "medha";
-    private static String adPassword = "cs411";
+    /* Attribute ddefinition */
+    private static String adEmail = "medha"; // the email of the admin
+    private static String adPassword = "cs411"; // the password of the admin
 
-    public static String getAdEmail () {
+    /**
+     * getAdEmail - getter method for getting the email of the admin
+     * @return the email of the admin
+     */
+    public static String getAdEmail() {
         return adEmail;
     }
 
-    public static String getAdPassword () {
+    /**
+     * getAdPassword - getter method for getting the password of the admin
+     * @return the password of the admin
+     */
+    public static String getAdPassword() {
         return adPassword;
     }
-
 }
