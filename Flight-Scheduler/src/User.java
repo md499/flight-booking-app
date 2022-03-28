@@ -28,16 +28,6 @@ public class User {
     }
 
     /**
-     * getPassword - getter method for the password of the user
-     * 
-     * @return the password of the user
-     */
-    public String getPassword() {
-
-        return this.password;
-    }
-
-    /**
      * setEmail - setter method for setting/changing the email of the user
      * 
      * @param newEmail
