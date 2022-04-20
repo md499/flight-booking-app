@@ -125,10 +125,8 @@ public class FlightDao implements DAO<Flight> {
         return null;
     }
 
-    public int updateFlight(Flight newFlight) {
+    public int update(Flight newFlight) {
         int result = 0;
-
-        String selectQuery = "Select * from flight where id = " + newFlight.getId();
         String updateQuery = "UPDATE `flight`\n"
                 + "SET\n"
                 + "`departureLocation` = ?,\n"
@@ -141,20 +139,17 @@ public class FlightDao implements DAO<Flight> {
                 + "WHERE `flight_id` = ?;";
 
         try {
-            PreparedStatement stm = this.conn.prepareStatement(selectQuery);
-            ResultSet rs = stm.executeQuery();
-            rs.next();
-
-            stm = this.conn.prepareStatement(updateQuery);
+            PreparedStatement stm = this.conn.prepareStatement(updateQuery);
             stm.setString(1, newFlight.getDepartureLocation());
             stm.setString(2, newFlight.getArrivalLocation());
 
-            stm.setTimestamp(4, Timestamp.valueOf(newFlight.getDepartureTime()));
-            stm.setTimestamp(5, Timestamp.valueOf(newFlight.getArrivalTime()));
+            stm.setTimestamp(3, Timestamp.valueOf(newFlight.getDepartureTime()));
+            stm.setTimestamp(4, Timestamp.valueOf(newFlight.getArrivalTime()));
 
+            stm.setInt(5, newFlight.getCapacity());
             stm.setInt(6, newFlight.getCapacity());
-            stm.setInt(7, newFlight.getCapacity() - rs.getInt("capacity") + rs.getInt("available"));
-            stm.setDouble(8, newFlight.getPrice());
+            stm.setDouble(7, newFlight.getPrice());
+            stm.setDouble(8, newFlight.getId());
 
             result = stm.executeUpdate();
 

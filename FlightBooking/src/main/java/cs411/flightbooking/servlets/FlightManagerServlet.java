@@ -59,7 +59,6 @@ public class FlightManagerServlet extends HttpServlet {
         view.forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -114,11 +113,12 @@ public class FlightManagerServlet extends HttpServlet {
 
             // available initially equals capacity
             int capacity = Integer.parseInt(request.getParameter("capacity"));
+            int available = capacity - Integer.parseInt(request.getParameter("num-flights-booked"));
             double price = Double.parseDouble(request.getParameter("price"));
 
-            Flight newFlight = new Flight(flightID, departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, capacity, price);
+            Flight newFlight = new Flight(flightID, departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, available, price);
             System.out.println(newFlight);
-//this.flightdao.insert(newFlight);
+            this.flightdao.update(newFlight);
         }
 
         List<Flight> flights = flightdao.selectAllFlights();
@@ -135,6 +135,6 @@ public class FlightManagerServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

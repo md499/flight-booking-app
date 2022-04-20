@@ -134,7 +134,7 @@
                             
                             <div class="col-md-4">
                                 <label for="capcity-in" class="form-label">Flights Booked</label>
-                                <input type="number" class="form-control" id="num-flights-booked" name="num-flights-booked" disabled>
+                                <input type="number" class="form-control" id="num-flights-booked" name="num-flights-booked" readonly>
                             </div>
 
                             <div class="col-md-4">
