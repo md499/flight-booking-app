@@ -1,7 +1,6 @@
 package cs411.flightbooking.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -15,6 +14,24 @@ import java.util.logging.Logger;
  */
 public class UserDao implements DAO<User> {
 
+    private Connection conn;
+
+    public UserDao(String dbName) {
+        try {
+            this.conn = DBConn.createConnection(dbName);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public UserDao() {
+        try {
+            this.conn = DBConn.defaultConnection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     /**
      * insert a newly registered user into the database
      *
@@ -23,30 +40,20 @@ public class UserDao implements DAO<User> {
      * @throws java.lang.ClassNotFoundException
      */
     @Override
-    public int insert(User user) throws ClassNotFoundException {
+    public int insert(User user) {
         // MySQL command for adding user info
         String INSERT_USER_SQL = "INSERT INTO users"
                 + " (firstName, lastName, email, password) VALUES"
                 + " (?, ?, ?, ?)";
 
         // Establish connection with mysql server
-        String url = "jdbc:mysql://localhost:3306/cs411";
-        String username = "root";
-        String password = "12MySQL34!";
-
         int result = 0;
 
+        System.out.println(user);
+
         try {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            } catch (Exception e) {
-                System.out.println("Instantiation Error");
-            }
-
-            Connection conn = DriverManager.getConnection(url, username, password);
-
             // Statements for adding user info
-            PreparedStatement statements = conn.prepareStatement(INSERT_USER_SQL);
+            PreparedStatement statements = this.conn.prepareStatement(INSERT_USER_SQL);
             statements.setString(1, user.getFirstName());
             statements.setString(2, user.getLastName());
             statements.setString(3, user.getEmail());
@@ -65,15 +72,16 @@ public class UserDao implements DAO<User> {
         return result;
     }
 
-    public static void main(String[] args) {
-        User user = new User("minh", "le", "minhle@bu.edu", "12345");
-
-        UserDao userDao = new UserDao();
-
-        try {
-            userDao.insert(user);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public static void main(String[] args) {
+//        User user = new User("min", "le", "min@bu.ed", "12345");
+//
+//        try {
+//            UserDao userdao = new UserDao(Secrets.mysql_url, Secrets.username, Secrets.password);
+//            System.out.println("Create userdao success");
+//            userdao.insert(user);
+//            System.out.println("Register success");
+//        } catch (Exception ex) {
+//            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }

@@ -85,4 +85,16 @@ public class User {
     public boolean authenticate(String password) {
         return this.password.equals(password);
     }
+
+    /**
+     *
+     * @return the String representation of a User object
+     */
+    @Override
+    public String toString() {
+        return "First Name: " + this.firstName + "\n"
+                + "Last Name: " + this.lastName + "\n"
+                + "Email: " + this.email + "\n"
+                + "Password: " + this.password;
+    }
 }
