@@ -15,18 +15,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import cs411.flightbooking.dao.UserDao;
 import cs411.flightbooking.models.User;
 
-/**
- *
- * @author minhl
- */
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
 
     // initialize the connection between db and web
-    private UserDao userDao;
+    private UserDao userdao;
 
+    @Override
     public void init() {
-        userDao = new UserDao();
+        this.userdao = new UserDao();
     }
 
     /**
@@ -88,15 +85,10 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        System.out.println(firstname + " " + lastName + " " + email + " " + password);
         User user = new User(firstname, lastName, email, password);
 
-        try {
-            userDao.insert(user);
-            // processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        // Insert new user into the database
+        this.userdao.insert(user);
 
         response.sendRedirect("user.jsp");
     }
@@ -110,5 +102,4 @@ public class RegisterServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
