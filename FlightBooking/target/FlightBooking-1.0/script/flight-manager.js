@@ -26,12 +26,6 @@ $(function () {
     
     $("#update-flight-btn").click(function () 
     {
-//        let id = $(this).attr("value");
-//        console.log(id);
-//        if (typeof id !== 'undefined' && id !== false) {
-//            $("#update-flight-form").attr("value", id);
-//        }
-
         let id = $(this).attr("value");
 
         // Change label
@@ -41,7 +35,7 @@ $(function () {
         
         // Find the row
         let row = $(".selected");
-        console.log(row[0]);
+        //console.log(row[0]);
         //Show current departure location
         $(form).find("#departureLoc").attr("value", $(row[0]).find("#departure-loc-col").html());
         
@@ -54,8 +48,12 @@ $(function () {
         //Show current arrival time
         $(form).find("#arrivalTime").attr("value", $(row[0]).find("#arrival-time-col").html());
         
-        //Show current capacity
-        $(form).find("#capacity-in").attr("value", $(row[0]).find("#capacity-col").html());
+        //Show current capacity and number of flights booked 
+        let old_capacity = $(row[0]).find("#capacity-col").html();        
+        let old_available = $(row[0]).find("#available-col").html();
+        let num_booked = old_capacity - old_available;
+        $(form).find("#capacity-in").attr("value", old_capacity).attr("min", num_booked);
+        $(form).find("#num-flights-booked").attr("value", num_booked);
         
         //Show current price
         $(form).find("#price-in").attr("value", $(row[0]).find("#price-col").html());

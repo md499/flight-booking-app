@@ -127,12 +127,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="capcity-in" class="form-label">Capacity</label>
-                                <input type="number" class="form-control" id="capacity-in" name="capacity" min="0" required>
+                                <input type="number" class="form-control" id="capacity-in" name="capacity" required>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="capcity-in" class="form-label">Flights Booked</label>
+                                <input type="number" class="form-control" id="num-flights-booked" name="num-flights-booked" disabled>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="price-in" class="form-label">Price</label>
                                 <input type="number" step="0.01" class="form-control" id="price-in" name="price" min="0" required>
                             </div>			
