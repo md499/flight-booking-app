@@ -1,11 +1,11 @@
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\dao\DBConn.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\JakartaRestConfiguration.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\dao\UserDao.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\models\Flight.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\dao\DAO.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\servlets\FlightManagerServlet.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\servlets\Secrets.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\dao\FlightDao.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\models\User.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\servlets\RegisterServlet.java
-C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Java\FlightBooking\src\main\java\cs411\flightbooking\servlets\test.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\servlets\Secrets.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\servlets\test.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\servlets\FlightManagerServlet.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\servlets\RegisterServlet.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\dao\FlightDao.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\models\Flight.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\models\User.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\dao\DBConn.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\dao\UserDao.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\JakartaRestConfiguration.java
+C:\Users\minhl\Documents\School_work\2022\Spring 2022\CS 411\Flight Booking\cs411-project\FlightBooking\src\main\java\cs411\flightbooking\dao\DAO.java

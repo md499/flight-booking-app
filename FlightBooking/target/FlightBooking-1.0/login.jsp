@@ -9,9 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Flight Booker</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+    <div align="center">
+            <h1> Login </h1>
+            <form action="register" method="post">
+                <table>
+                    <tr>
+                        <td><label for="email">Email</label></td>
+                        <td><input type="text" name="email" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td><input type="text" name="password" /></td>
+                    </tr>
+                </table>
+                
+                <input type="submit" value="Login">
+            </form>
+        </div>
     </body>
 </html>
