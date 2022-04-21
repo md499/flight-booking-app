@@ -164,12 +164,12 @@ public class FlightDao implements DAO<Flight> {
      * remove - a function that helps removing a flight from the database
      *
      * @param flightID is the id of the targeted flight
-     * @return the number of row affected by the excution of the delete query
+     * @return the number of row affected by the execution of the delete query
      */
     public int remove(int flightID) {
         int result = 0;
         String deleteQuery = "DELETE FROM `cs411`.`flight`"
-                + "WHERE id = ?;";
+                + "WHERE flight_id = ?;";
 
         try {
             PreparedStatement stm = this.conn.prepareStatement(deleteQuery);

@@ -119,6 +119,9 @@ public class FlightManagerServlet extends HttpServlet {
             Flight newFlight = new Flight(flightID, departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, available, price);
             System.out.println(newFlight);
             this.flightdao.update(newFlight);
+        } else if ("remove-flight".equals(action)) {
+            int flightID = Integer.parseInt(request.getParameter("flightID"));
+            this.flightdao.remove(flightID);
         }
 
         List<Flight> flights = flightdao.selectAllFlights();
