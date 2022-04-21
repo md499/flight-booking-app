@@ -160,6 +160,28 @@ public class FlightDao implements DAO<Flight> {
         return result;
     }
 
+    /**
+     * remove - a function that helps removing a flight from the database
+     *
+     * @param flightID is the id of the targeted flight
+     * @return the number of row affected by the excution of the delete query
+     */
+    public int remove(int flightID) {
+        int result = 0;
+        String deleteQuery = "DELETE FROM `cs411`.`flight`"
+                + "WHERE id = ?;";
+
+        try {
+            PreparedStatement stm = this.conn.prepareStatement(deleteQuery);
+            stm.setInt(1, flightID);
+            result = stm.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FlightDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         FlightDao flightdao = new FlightDao();
 //        Flight flight = new Flight(2, "BOS", "JFK", "2023-05-14 07:00:00", "2023-05-14 10:00:00", 200, 150, 399.99, "ON-TIME");
