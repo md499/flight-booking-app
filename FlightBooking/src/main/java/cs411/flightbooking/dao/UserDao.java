@@ -5,11 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import cs411.flightbooking.models.User;
-import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-
 
 /**
  * UserDao - a class for communicating between a user object and the database
@@ -74,36 +71,6 @@ public class UserDao implements DAO<User> {
 
         return result;
     }
-    
- public User getUser (String email) {
-     
-    String GET_USER_SQL =  "SELECT `users`.`firstName`,`users`.`lastName`,`users`.`email`,`users`.`password` "
-            + "FROM `cs411`.`users` where email = ?";
-    
-    User user =  null;
-    
-        try {
-            PreparedStatement statements = this.conn.prepareStatement(GET_USER_SQL);
-            statements.setString(1, email);
-            
-            ResultSet rs = statements.executeQuery();
-            
-            rs.next();
-            String firstName = rs.getString("firstName");
-            String lastName = rs.getString("lastName");
-            String emails = rs.getString("email");
-            String password = rs.getString("password");
-            
-            user = new User(firstName, lastName, emails, password);
-            
-            return user;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    return user;
- 
- }
 
 //    public static void main(String[] args) {
 //        User user = new User("min", "le", "min@bu.ed", "12345");
