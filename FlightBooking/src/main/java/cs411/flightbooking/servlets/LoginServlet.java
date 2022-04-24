@@ -15,16 +15,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import cs411.flightbooking.dao.UserDao;
 import cs411.flightbooking.models.User;
+
 /**
+ *
  *
  * @author medha499
  */
-
-
-
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-private UserDao userdao;
+
+    private UserDao userdao;
 
     @Override
     public void init() {
@@ -40,7 +40,6 @@ private UserDao userdao;
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        response.setContentType("text/html;charset=UTF-8");
@@ -55,7 +54,7 @@ private UserDao userdao;
 //            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
- //       }
+        //       }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,10 +70,7 @@ private UserDao userdao;
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("login.jsp");
-        
-        
-        
-        
+
     }
 
     /**
@@ -89,37 +85,39 @@ private UserDao userdao;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // processRequest(request, response);
-        
-        
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        User user = this.userdao.getUser(email); 
-        
-        if (password.equals(user.getPassword())) 
-        {
-            response.sendRedirect("user.jsp");
-        }
-        
-        else{
-             response.sendRedirect("error.jsp");
-        }
-        
+        User user = this.userdao.getUser(email);
 
-        // Insert new user into the database
-      
+        if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
+            response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
+        } 
+        
+        
+        else {
+            if (password.equals(user.getPassword())) {
+                response.sendRedirect("user.jsp");
+            } else {
+                response.sendRedirect("error.jsp");
+            }
+        }
 
-        //response.sendRedirect("user.jsp");
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+    // Insert new user into the database
+    //response.sendRedirect("user.jsp");
+
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
+@Override
+public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
+// </editor-fold>
 
 }
