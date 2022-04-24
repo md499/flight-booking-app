@@ -39,13 +39,13 @@ $(function () {
 
         // Find the row
         let row = $(".selected");
-        //console.log(row[0]);
+        
         //Show current departure location
-        $(form).find("#departureLoc").attr("value", $(row[0]).find("#departure-loc-col").html());
-
+        $(form).find("#update-flight-departureLoc").val($(row[0]).find("#departure-loc-col").html());
+        
         //Show current arrival location
-        $(form).find("#arrivalLoc").attr("value", $(row[0]).find("#arrival-loc-col").html());
-
+        $(form).find("#update-flight-arrivalLoc").val($(row[0]).find("#arrival-loc-col").html());
+        
         //Show current departure time
         $(form).find("#departureTime").attr("value", $(row[0]).find("#departure-time-col").html());
 
@@ -93,10 +93,8 @@ $(function () {
                 $(row[0]).html() +
                 "</tbody>" + "</table> </div>");
 
-        //$(form).find("#confirm-question:first").append($table);
+        
         $(form).find(".container-fluid").append($table);
-        //let modal_body = $(form);
-        //console.log(modal_body.html());
     });
 });
 

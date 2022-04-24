@@ -6,8 +6,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Bootsrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <!-- CSS style sheets -->
         <link rel="stylesheet" href="../css/style.css">
+
+        <!-- JQuerry -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <!-- For alerting symbols -->
@@ -52,12 +57,12 @@
                     <div class="modal-body row g-3">				
                         <div class="col-md-6">
                             <label for="departureLoc" class="form-label">Departure</label>
-                            <input type="text" class="form-control" id="Location" name="departureLoc" required>
+                            <input type="text" class="form-control" id="add-flight-departureLoc" name="departureLoc" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="arrivalLoc" class="form-label">Arrival</label>
-                            <input type="text" class="form-control" id="Location" name="arrivalLoc" required>
+                            <input type="text" class="form-control" id="add-flight-arrivalLoc" name="arrivalLoc" required>
                         </div>
 
                         <div class="col-md-12">
@@ -115,12 +120,12 @@
 
                         <div class="col-md-6">
                             <label for="departureLoc" class="form-label">Departure</label>
-                            <input type="text" class="form-control" id="departureLoc" name="departureLoc" required>
+                            <input type="text" class="form-control" id="update-flight-departureLoc" name="departureLoc" required>
                         </div>
 
                         <div class="col-md-6">
                             <label for="arrivalLoc" class="form-label">Arrival</label>
-                            <input type="text" class="form-control" id="arrivalLoc" name="arrivalLoc" required>
+                            <input type="text" class="form-control" id="update-flight-arrivalLoc" name="arrivalLoc" required>
                         </div>
 
                         <div class="col-md-12">
@@ -233,16 +238,32 @@
             </tbody>
         </table>
     </div>
-
+    <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <!-- For refreshing page -->
     <script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
 
+    <!-- Local JS Files -->
+    <script type="text/javascript" src="../script/airport_search/search.js"></script>
+    <script type="text/javascript" src="../script/airport_search/main.js"></script>
     <script type="text/javascript" src="../script/flight-manager.js"></script>
 
+    <!-- Add airport search for the input elements -->
+    <script>
+        AirportInput("#add-flight-departureLoc");
+        AirportInput("#add-flight-arrivalLoc");
+        AirportInput("#update-flight-departureLoc");
+        AirportInput("#update-flight-arrivalLoc");
+    </script>
 </body>
 </html>
