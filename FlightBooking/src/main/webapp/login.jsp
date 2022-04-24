@@ -18,12 +18,12 @@
                 <table>
                     <tr>
                         <td><label for="email">Email</label></td>
-                        <td><input type="text" name="email" /></td>
+                        <td><input type="text" name="email" required/></td>
                     </tr>
                     
                     <tr>
                         <td><label for="password">Password</label></td>
-                        <td><input type="text" name="password" /></td>
+                        <td><input type="text" name="password" required/></td>
                     </tr>
                 </table>
                 
