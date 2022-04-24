@@ -14,7 +14,7 @@
     <body>
     <div align="center">
             <h1> Login </h1>
-            <form action="register" method="post">
+            <form action="login" method="post">
                 <table>
                     <tr>
                         <td><label for="email">Email</label></td>
@@ -23,7 +23,7 @@
                     
                     <tr>
                         <td><label for="password">Password</label></td>
-                        <td><input type="text" name="password" required/></td>
+                        <td><input type="password" name="password" required/></td>
                     </tr>
                 </table>
                 
