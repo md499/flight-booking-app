@@ -8,6 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Bootsrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 
         <!-- CSS style sheets -->
         <link rel="stylesheet" href="../css/style.css">
@@ -69,11 +70,11 @@
                             <label for="Time" class="form-label">When?</label>
                             <div class="input-group">
                                 <span class="input-group-text col-md-2">From</span>
-                                <input type="datetime-local" class="form-control" id="time-in" name="departureTime" required>
+                                <input type="datetime-local" class="form-control" id="departure-time" name="departureTime" required>
                             </div>
-                            <div class="input-group">
+                            <div class="input-group has-validation">
                                 <span class="input-group-text col-md-2">To</span>
-                                <input type="datetime-local" class="form-control" id="time-in" name="arrivalTime" required>
+                                <input type="datetime-local" class="form-control" id="arrival-time" name="arrivalTime" required>
                             </div>
                         </div>
 
@@ -222,6 +223,12 @@
             <tbody class="text-center">
                 <%ArrayList<Flight> flights =
                         (ArrayList<Flight>)request.getAttribute("flight-data");
+                        if (flights.isEmpty()) {%>
+                <tr>
+                    <td colspan="8">
+                        There is no flight to show.
+                    </td>
+                </tr> <%} else {
                 for(Flight flight:flights){%>
                 <tr>
                     <th scope="row"><%=flight.getId()%></th>
@@ -233,15 +240,15 @@
                     <td id="available-col"><%=flight.getAvailable()%></td>
                     <td id="price-col"><%=flight.getPrice()%></td>
                 </tr>
-                <%}%>
+                <%}}%>
 
             </tbody>
         </table>
     </div>
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+    
     <!-- Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>

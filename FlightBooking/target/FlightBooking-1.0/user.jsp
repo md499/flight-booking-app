@@ -12,6 +12,7 @@
         <title>Home Page</title>
     </head>
     <body>
-        <h1>Hello user. You registered successfully</h1>
+        <h1>Welcome! You registered successfully</h1>
     </body>
+
 </html>
