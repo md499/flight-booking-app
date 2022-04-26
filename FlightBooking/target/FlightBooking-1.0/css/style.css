@@ -3,21 +3,6 @@
     color: black;
 }
 
-#home-page-body {
-    background-image: url('../img/home_bg.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.center {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    text-align: center;
-    color: #ff2c2c;
-}
-
 .form-group {
     margin-bottom: 20px;
 }
@@ -109,3 +94,4 @@
     border-bottom-color: #26c9ff;
     outline: solid 1px #00b6f2;
 }
+

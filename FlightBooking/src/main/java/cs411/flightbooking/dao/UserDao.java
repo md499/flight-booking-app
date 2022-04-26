@@ -40,39 +40,36 @@ public class UserDao implements DAO<User> {
      * @return
      * @throws java.lang.ClassNotFoundException
      */
-    
-     
- public User getUser (String email) {
-     
-    String GET_USER_SQL =  "SELECT `users`.`firstName`,`users`.`lastName`,`users`.`email`,`users`.`password` "
-            + "FROM `cs411`.`users` where email = ?";
-    
-    User user =  null;
-    
+    public User getUser(String email) {
+
+        String GET_USER_SQL = "SELECT `users`.`firstName`,`users`.`lastName`,`users`.`email`,`users`.`password` "
+                + "FROM `cs411`.`users` where email = ?";
+
+        User user = null;
+
         try {
             PreparedStatement statements = this.conn.prepareStatement(GET_USER_SQL);
             statements.setString(1, email);
-            
+
             ResultSet rs = statements.executeQuery();
-            
+
             rs.next();
             String firstName = rs.getString("firstName");
             String lastName = rs.getString("lastName");
             String emails = rs.getString("email");
             String password = rs.getString("password");
-            
+
             user = new User(firstName, lastName, emails, password);
-            
+
             return user;
 
         } catch (SQLException ex) {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return user;
- 
- }
+        return user;
 
-    
+    }
+
     @Override
     public int insert(User user) {
         // MySQL command for adding user info

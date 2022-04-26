@@ -12,6 +12,12 @@
         <title>Home Page</title>
     </head>
     <body>
+        <% 
+            String role = (String) session.getAttribute("role");
+            if (role == null || role.equals("admin")) {
+            response.sendRedirect("login.jsp");
+            }
+        %>
         <h1>Welcome! You registered successfully</h1>
     </body>
 
