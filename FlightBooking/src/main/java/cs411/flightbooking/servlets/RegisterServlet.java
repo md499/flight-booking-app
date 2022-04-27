@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import cs411.flightbooking.dao.UserDao;
 import cs411.flightbooking.models.User;
+import jakarta.servlet.RequestDispatcher;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
@@ -52,7 +53,6 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -87,10 +87,18 @@ public class RegisterServlet extends HttpServlet {
 
         User user = new User(firstname, lastName, email, password);
 
+        RequestDispatcher view;
         // Insert new user into the database
-        this.userdao.insert(user);
+        if (this.userdao.insert(user) == 0) {
+            request.setAttribute("error", "Email has already been registered");
+            view = request.getRequestDispatcher("/register.jsp");
+        } else {
+            request.setAttribute("error", "");
+            view = request.getRequestDispatcher("/login");
+        }
 
-        response.sendRedirect("user.jsp");
+        view.forward(request, response);
+// response.sendRedirect("user.jsp");
     }
 
     /**
@@ -101,5 +109,5 @@ public class RegisterServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 }

@@ -9,23 +9,24 @@ import java.sql.SQLException;
  */
 public class DBConn {
 
-    private static final String MYSQL_URL = "jdbc:mysql://localhost:3306/";
+    private static final String MYSQL_CONF_STRING = "?allowPublicKeyRetrieval=true&useSSL=false";
 
-    private static final String MYSQL_CONF_STRING
-            = "?allowPublicKeyRetrieval=true&useSSL=false";
+    /* Configurations for connection with local database */
+    private static final String LOCAL_MYSQL_URL = "jdbc:mysql://localhost:3306/";
+    private static final String LOCAL_MYSQL_USERNAME = "cs411";
+    private static final String LOCAL_MYSQL_PASSWORD = "12345";
 
-    private static final String MYSQL_USERNAME = "cs411";
-
-    private static final String MYSQL_PASSWORD = "12345";
+    /* Defalt config for connection with AWS database */
+    private static final String MYSQL_URL = "jdbc:mysql://cs411.cuybam09krto.us-east-1.rds.amazonaws.com/";
+    private static final String MYSQL_USERNAME = "admin";
+    private static final String MYSQL_PASSWORD = "12MyAWS34!";
 
     public static Connection createConnection(String dbName)
             throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(
                 MYSQL_URL + dbName + MYSQL_CONF_STRING,
-                MYSQL_USERNAME,
-                MYSQL_PASSWORD);
-
+                MYSQL_USERNAME, MYSQL_PASSWORD);
         return conn;
     }
 

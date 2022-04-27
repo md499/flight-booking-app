@@ -15,6 +15,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import cs411.flightbooking.dao.UserDao;
 import cs411.flightbooking.models.User;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.http.HttpSession;
+import jakarta.ws.rs.core.Request;
 
 /**
  *
@@ -48,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet LoginServlet</title>");            
+//            out.println("<title>Servlet LoginServlet</title>");
 //            out.println("</head>");
 //            out.println("<body>");
 //            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
@@ -57,7 +60,6 @@ public class LoginServlet extends HttpServlet {
         //       }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -69,8 +71,18 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("login.jsp");
 
+        HttpSession session = request.getSession();
+
+        String role = (String) session.getAttribute("role");
+        if (role != null && role.equals("admin")) {
+            response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
+        } else if (role != null && role.equals("user")) {
+            RequestDispatcher view = request.getRequestDispatcher("user.jsp");
+            view.forward(request, response);
+        } else {
+            response.sendRedirect("login.jsp");
+        }
     }
 
     /**
@@ -84,40 +96,45 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
+        HttpSession session = request.getSession();
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         User user = this.userdao.getUser(email);
 
-        if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
-            response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
-        } 
-        
-        
-        else {
-            if (password.equals(user.getPassword())) {
-                response.sendRedirect("user.jsp");
+        if (user != null) {
+            if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
+                session.setAttribute("role", "admin");
+                response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
             } else {
-                response.sendRedirect("error.jsp");
+                if (password.equals(user.getPassword())) {
+                    session.setAttribute("role", "user");
+
+                    request.setAttribute("loginError", "");
+                    response.sendRedirect("user.jsp");
+                } else {
+                    request.setAttribute("loginError", "Incorrect email or password");
+                    response.sendRedirect("login.jsp");
+                }
             }
+        } else {
+            request.setAttribute("loginError", "Incorrect email or password");
+            response.sendRedirect("login.jsp");
         }
 
     }
 
     // Insert new user into the database
     //response.sendRedirect("user.jsp");
-
-/**
- * Returns a short description of the servlet.
- *
- * @return a String containing servlet description
- */
-@Override
-public String getServletInfo() {
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
         return "Short description";
     }
-// </editor-fold>
 
 }

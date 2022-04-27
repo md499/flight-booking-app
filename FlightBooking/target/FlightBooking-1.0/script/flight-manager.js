@@ -39,13 +39,13 @@ $(function () {
 
         // Find the row
         let row = $(".selected");
-        
+
         //Show current departure location
         $(form).find("#update-flight-departureLoc").val($(row[0]).find("#departure-loc-col").html());
-        
+
         //Show current arrival location
         $(form).find("#update-flight-arrivalLoc").val($(row[0]).find("#arrival-loc-col").html());
-        
+
         //Show current departure time
         $(form).find("#departureTime").attr("value", $(row[0]).find("#departure-time-col").html());
 
@@ -61,6 +61,10 @@ $(function () {
 
         //Show current price
         $(form).find("#price-in").attr("value", $(row[0]).find("#price-col").html());
+
+        let today = new Date();
+        form.find("#departureTime:first").attr("min", today.toISOString().split('T')[0] + "T00:00");
+        form.find("#arrivalTime:first").attr("min", today.toISOString().split('T')[0] + "T00:00");
     });
 
     /**
@@ -70,14 +74,14 @@ $(function () {
         let id = $(this).attr("value");
         let form = $("#remove-flight-form .modal-body");
         $(form).find("#flightID").attr("value", id);
-        
+
         // Remove all table in this form
         $(form).find("table:first").remove();
-        
+
         let row = $(".selected:first");
-        
+
         console.log($(row[0]).html());
-        let $table = $("<div class='container col-md-12'>"+"<table class='table table-hover table-responsive' id='all-flight-table'>" +
+        let $table = $("<div class='container col-md-12'>" + "<table class='table table-hover table-responsive' id='all-flight-table'>" +
                 "<thead> <tr class='text-center'>" +
                 "<th scope='col'>ID</th>" +
                 "<th scope='col'>Departure</th>" +
@@ -88,13 +92,92 @@ $(function () {
                 "<th scope='col'>Available</th>" +
                 "<th scope='col'>Price</th>" +
                 "</tr>" +
-                "</thead>" + 
-                "<tbody class='text-center'>" + 
+                "</thead>" +
+                "<tbody class='text-center'>" +
                 $(row[0]).html() +
                 "</tbody>" + "</table> </div>");
 
-        
+
         $(form).find(".container-fluid").append($table);
     });
-});
 
+    /*
+     * Validate date input
+     */
+    $("#add-flight-btn").click(function () {
+        let form = $("#add-flight-form");
+        let today = new Date();
+        form.find("#departure-time:first").attr("min", today.toISOString().split('T')[0] + "T00:00");
+        form.find("#arrival-time:first").attr("min", today.toISOString().split('T')[0] + "T00:00");
+    });
+
+    $("#departure-time").change(function () {
+        console.log($(this));
+        let departureTimeString = $(this).val();
+        let departureTime = new Date(departureTimeString);
+
+        let arrivalInput = $("#arrival-time");
+        let arrivalTimeString = arrivalInput.val();
+        let arrivalTime = new Date(arrivalTimeString);
+
+        if (arrivalTime < departureTime) {
+            alert("Cannor arrive before departure");
+            arrivalInput.val('');
+        }
+        arrivalInput.attr("min", departureTimeString);
+
+    });
+
+    $("#arrival-time").change(function () {
+        console.log($(this));
+        let arrivalTimeString = $(this).val();
+        let arrivalTime = new Date(arrivalTimeString);
+
+        let departureInput = $("#departure-time");
+        let departureTimeString = departureInput.val();
+        let departureTime = new Date(departureTimeString);
+
+        if (arrivalTime < departureTime) {
+            alert("Cannor arrive before departure");
+            $(this).val('');
+        }
+        $(this).attr("min", departureTimeString);
+
+    });
+
+    $("#departureTime").change(function () {
+        console.log($(this));
+        let departureTimeString = $(this).val();
+        let departureTime = new Date(departureTimeString);
+
+        let arrivalInput = $("#arrivalTime");
+        let arrivalTimeString = arrivalInput.val();
+        let arrivalTime = new Date(arrivalTimeString);
+
+        if (arrivalTime < departureTime) {
+            alert("Cannor arrive before departure");
+            arrivalInput.val('');
+
+        }
+        arrivalInput.attr("min", departureTimeString);
+
+    });
+
+    $("#arrivalTime").change(function () {
+        console.log($(this));
+        let arrivalTimeString = $(this).val();
+        let arrivalTime = new Date(arrivalTimeString);
+
+        let departureInput = $("#departurTime");
+        let departureTimeString = departureInput.val();
+        let departureTime = new Date(departureTimeString);
+
+        if (arrivalTime < departureTime) {
+            alert("Cannor arrive before departure");
+            $(this).val('');
+            $(this).attr("min", departureTimeString);
+        }
+        $(this).attr("min", departureTimeString);
+
+    });
+});
