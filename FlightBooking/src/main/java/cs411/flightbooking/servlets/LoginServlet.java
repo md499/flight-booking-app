@@ -72,17 +72,8 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
-
-        String role = (String) session.getAttribute("role");
-        if (role != null && role.equals("admin")) {
-            response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
-        } else if (role != null && role.equals("user")) {
-            RequestDispatcher view = request.getRequestDispatcher("user.jsp");
-            view.forward(request, response);
-        } else {
-            response.sendRedirect("login.jsp");
-        }
+        RequestDispatcher view = request.getRequestDispatcher("/login.jsp");
+        view.forward(request, response);
     }
 
     /**
@@ -109,7 +100,7 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
             } else {
                 if (password.equals(user.getPassword())) {
-                    session.setAttribute("role", "user");
+                    session.setAttribute("role", "employee");
 
                     request.setAttribute("loginError", "");
                     response.sendRedirect("user.jsp");
@@ -121,6 +112,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             request.setAttribute("loginError", "Incorrect email or password");
             response.sendRedirect("login.jsp");
+
         }
 
     }
