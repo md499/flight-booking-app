@@ -87,6 +87,7 @@ public class FlightDao implements DAO<Flight> {
 
         return result;
     }
+    
 
     public List<Flight> selectAllFlights() {
         List<Flight> flights = new ArrayList<>();
@@ -121,8 +122,48 @@ public class FlightDao implements DAO<Flight> {
         return flights;
     }
 
-    public static Flight getFlight(int id) {
-        return null;
+    public List<Flight> getFlightFromSearch(String DLocation, String ALocation, String Date) {
+        String GET_FLIGHT_SQL = "SELECT `flight`.`flight_id`,`flight`.`departureLocation`,\n" +
+"`flight`.`arrivalLocation`,`flight`.`departureTime`,`flight`.`arrivalTime`,\n" +
+"                `flight`.`capacity`,`flight`.`available`,`flight`.`price`  \n" +
+"                FROM `cs411`.`flight` where departureLocation = ? AND arrivalLocation = ? AND departureTime >= ?";
+
+        List <Flight> flights = new ArrayList<>();
+
+        try {
+            PreparedStatement statements = this.conn.prepareStatement(GET_FLIGHT_SQL);
+            statements.setString(1,DLocation);
+            statements.setString(2,ALocation);
+            //statements.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(Date)));
+            statements.setString(3,Date);
+
+            
+            
+
+            ResultSet rs = statements.executeQuery();
+
+            while(rs.next()) {
+                int id = rs.getInt("flight_id");
+                
+                String departLoc = rs.getString("departureLocation");
+                String arrivalLoc = rs.getString("arrivalLocation");
+
+                LocalDateTime departTime = rs.getTimestamp("departureTime").toLocalDateTime();
+                LocalDateTime arrivalTime = rs.getTimestamp("arrivalTime").toLocalDateTime();
+
+                int capacity = rs.getInt("capacity");
+                int available = rs.getInt("available");
+                double price = rs.getDouble("price");
+
+                Flight flight = new Flight(id, departLoc, arrivalLoc, departTime, arrivalTime, capacity, available, price);
+
+                flights.add(flight);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flights;
     }
 
     public int update(Flight newFlight) {
