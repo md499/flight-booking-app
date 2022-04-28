@@ -95,7 +95,7 @@ const airport_input = function (id, data, options) {
             });
 
             selectedIndex = -1;
-            
+
             list.html(divs.join(''))
                     .attr('data-highlight', selectedIndex);
 
