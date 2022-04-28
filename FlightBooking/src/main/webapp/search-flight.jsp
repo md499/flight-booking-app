@@ -26,6 +26,7 @@
                     <th scope="col">Capacity</th>
                     <th scope="col">Available</th>
                     <th scope="col">Price</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -37,8 +38,10 @@
                         There is no flight to show.
                     </td>
                 </tr> <%} else {
+int i=0;
                 for(Flight flight:flights){%>
                 <tr>
+            <form action="book-flight" method="post">
                     <th scope="row"><%=flight.getId()%></th>
                     <td id="departure-loc-col"><%=flight.getDepartureLocation()%></td>
                     <td id="arrival-loc-col"><%=flight.getArrivalLocation()%></td>
@@ -47,8 +50,11 @@
                     <td id="capacity-col"><%=flight.getCapacity()%></td>
                     <td id="available-col"><%=flight.getAvailable()%></td>
                     <td id="price-col"><%=flight.getPrice()%></td>
+                    <input id="flight-info" name="booked-flight-index" value="<%=i%>" hidden>
+                    <td id="book-col"><button type="submit">Book now</button></td>
+            </form>
                 </tr>
-                <%}}%>
+                <%} i+= 1;}%>
 
             </tbody>
         </table>
