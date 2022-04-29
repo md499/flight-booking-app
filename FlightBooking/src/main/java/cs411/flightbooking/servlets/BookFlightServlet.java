@@ -102,16 +102,13 @@ public class BookFlightServlet extends HttpServlet {
 
         if (user_email == null || user_email.equals("")) {
             response.sendRedirect("user");
-            return;
         } else {
             this.flightdao.bookFlight(user_email, choseFlight);
             this.ticketdao.insert(new Ticket(user_email, flight_id));
+            response.sendRedirect("./user");
         }
-        System.out.println(choseFlight);
-
-        request.setAttribute("booked-flight", choseFlight);
-        RequestDispatcher view = request.getRequestDispatcher("/book-flight.jsp");
-        view.forward(request, response);
+        
+      
     }
 
     /**
