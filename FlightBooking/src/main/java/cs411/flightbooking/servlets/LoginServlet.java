@@ -100,7 +100,7 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        RequestDispatcher view;
+        RequestDispatcher view = null;
 
         User user = this.userdao.getUser(email);
         
@@ -118,7 +118,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("role", "user");
 
                     request.setAttribute("loginError", "");
-                    view = request.getRequestDispatcher("user.jsp");
+                    response.sendRedirect("user.jsp");
                 } else {
                     request.setAttribute("loginError", "Incorrect email or password");
                     view = request.getRequestDispatcher("login.jsp");
@@ -129,7 +129,10 @@ public class LoginServlet extends HttpServlet {
             view = request.getRequestDispatcher("login.jsp");
         }
 
-        view.forward(request, response);
+        if (view != null) {
+            view.forward(request, response);
+        }
+
     }
 
     // Insert new user into the database
