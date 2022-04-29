@@ -65,66 +65,22 @@
             <div class="d-flex justify-content-center">
                 <div class="text-center">
                     <h1 class="mx-auto my-0 text-uppercase">CS411 Flight Booker</h1>
-                    <h2 class="text-white-50 mx-auto mt-2 mb-5">A place to book your flight ticket </h2>
-                    <a class="btn btn-primary" href="#search-flight-section">Search Flight</a>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">A place to book your flight ticket. Log in to start. </h2>
+                    <a class="btn btn-primary" href="login">Log In</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="about-section text-center" id="search-flight-section">
-        <form action="search-flight" id="search-form" method="post">    
-            <div class="container px-4 px-lg-5" id="flight-search-module">
-
-                <h1>Flight Search</h1>
-                <hr></hr>
-                <div class="form-inputs">
-                    <label for="from" class="form-label">From</label>
-                    <input type="text" class="form-control" id="from-loc" name="from" required>
-                </div>
-                <div class="form-inputs">
-                    <label for="to" class="form-label">To</label>
-                    <input type="text" class="form-control" id="to-loc" name="to" required>
-                </div>
-                <div class="form-inputs">
-                    <label for="date" class="form-label">Date</label>
-                    <div class="input-group has-validation">
-                        <input type="date" class="form-control" id="time-in" name="departureTime" required>
-                    </div>
-
-                    <br><button id="button" class="btn btn-primary" type="submit" onclick="flight.submitValues(event)">Search</button>
-
-                </div>    
-        </form>
-    </section>
-
-
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-
-    <!-- Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
     <!-- For refreshing page -->
     <script>
                         if (window.history.replaceState) {
                             window.history.replaceState(null, null, window.location.href);
                         }
-    </script>
-
-    <!-- Local JS Files -->
-    <script type="text/javascript" src="script/airport_search/search.js"></script>
-    <script type="text/javascript" src="script/airport_search/main.js"></script>
-
-    <script>
-                        AirportInput("#from-loc");
-                        AirportInput("#to-loc");
-
-                        let form = $("#search-form");
-                        let today = new Date();
-                        form.find("#time-in:first").attr("min", today.toISOString().split('T')[0]);
     </script>
 
 </body>
