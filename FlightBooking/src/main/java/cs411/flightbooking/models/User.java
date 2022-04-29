@@ -27,10 +27,20 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * getFirstName - getter method for the first name of the user
+     *
+     * @return the first name of the user
+     */
     public String getFirstName() {
         return firstName;
     }
-
+    
+    /**
+     * getLastName - getter method for the last name of the user
+     *
+     * @return the last name of the user
+     */
     public String getLastName() {
         return lastName;
     }
@@ -44,14 +54,29 @@ public class User {
         return this.email;
     }
 
+    /**
+     * getPassword - getter method for the password of the user
+     *
+     * @return the password of the user
+     */
     public String getPassword() {
         return password;
     }
-
+    
+    /**
+     * setFirstName - setter method for the first name of the user
+     * 
+     * @param firstName
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    /**
+     * setFirstName - setter method for the last name of the user
+     * 
+     * @param lastName
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
