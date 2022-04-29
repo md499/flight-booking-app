@@ -8,6 +8,7 @@
 /Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/servlets/SearchFlightServlet.java
 /Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/dao/DBConn.java
 /Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/models/Flight.java
+/Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/servlets/BookFlightServlet.java
 /Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/servlets/LoginServlet.java
 /Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/models/User.java
 /Users/sofi/Documents/2ndyear/CS411/cs411-project/FlightBooking/src/main/java/cs411/flightbooking/servlets/FlightManagerServlet.java

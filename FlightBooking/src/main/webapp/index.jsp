@@ -75,11 +75,12 @@
                         <input type="date" class="form-control" id="time-in" name="departureTime" required>
                     </div>
 
-                    <button id="button" type="submit" onclick="flight.submitValues(event)">Search</button>
+                    <br><button id="button" class="btn btn-light" type="submit" onclick="flight.submitValues(event)">Search</button>
 
                 </div>  
         </form>
     </div>
+            
 
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

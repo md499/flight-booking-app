@@ -1,6 +1,7 @@
 cs411/flightbooking/dao/DBConn.class
 cs411/flightbooking/servlets/FlightManagerServlet.class
 cs411/flightbooking/servlets/RegisterServlet.class
+cs411/flightbooking/servlets/BookFlightServlet.class
 cs411/flightbooking/dao/DAO.class
 cs411/flightbooking/dao/UserDao.class
 cs411/flightbooking/servlets/Secrets.class
