@@ -103,8 +103,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher view = null;
 
         User user = this.userdao.getUser(email);
-        
-        
+
         System.out.println(user);
 
         if (user != null) {
@@ -118,7 +117,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("role", "user");
 
                     request.setAttribute("loginError", "");
-                    response.sendRedirect("user.jsp");
+                    response.sendRedirect("user");
                 } else {
                     request.setAttribute("loginError", "Incorrect email or password");
                     view = request.getRequestDispatcher("login.jsp");
