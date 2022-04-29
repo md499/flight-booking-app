@@ -58,8 +58,8 @@
                     <button class="nav-link active dropdown-toggle" href="#" type="navbarDropdown" id="user-dropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#user-dropdown" aria-expanded="false">
                         <i class="bi-person-circle"></i>
                     </button> 
-                    <ul class="dropdown-menu" aria-labelledby="user-dropdown">
-                        <li><a class="dropdown-item" href="../logout.jsp">Logout</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                        <li><a class="dropdown-item" href="../logout.jsp">Log Out</a></li>
                     </ul>
                 </div>
             </div>

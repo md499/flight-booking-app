@@ -69,7 +69,7 @@
                         <button type="submit" class="btn btn-primary" id="sign-up-btn" value="register">Sign Up</button>
                     </div>
                 </form>
-                <hr>
+                <hr></hr>
                 <div class="col-12 text-center">
                     <p> Already has an account? Log in <a href="./login">here</a></p>
                 </div>

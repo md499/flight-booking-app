@@ -44,7 +44,7 @@
 
 
                 </form>
-                <hr>
+                <hr></hr>
                 <div class="col-12 text-center">
                     <p> Need an account? Sign up <a href="./register">here</a></p>
                 </div>
