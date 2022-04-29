@@ -94,7 +94,7 @@ int i=0;
                     <td id="available-col"><%=flight.getAvailable()%></td>
                     <td class="td-sort-asc" id="price-col" >$<%=flight.getPrice()%></td>
                     <input id="flight-info" name="booked-flight-id" value="<%=flight.getId()%>" hidden>
-                    <td id="book-col"><button class="btn btn-light" type="submit">Book now</button></td>
+                    <td id="book-col"><button class="btn btn-primary" type="submit">Book now</button></td>
             </form>
                 </tr>
                 <%} i+= 1;}%>

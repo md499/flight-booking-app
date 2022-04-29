@@ -29,7 +29,7 @@
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">Flight Booking</a>
+                <a class="navbar-brand" href="/FlightBooking">Flight Booking</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -50,8 +50,8 @@
                             <button class="nav-link active dropdown-toggle" href="#" type="navbarDropdown" id="user-dropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#user-dropdown" aria-expanded="false">
                                 <i class="bi-person-circle"></i>
                             </button> 
-                            <ul class="dropdown-menu" aria-labelledby="user-dropdown">
-                                <li><a class="dropdown-item" href="logout.jsp">Logout</a></li>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                                <li><a class="dropdown-item" href="logout.jsp">Log Out</a></li>
                             </ul>
                         </div>
                 </div>

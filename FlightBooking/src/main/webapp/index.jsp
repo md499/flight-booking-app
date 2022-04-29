@@ -11,9 +11,13 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">        
 
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
     <!-- CSS style sheets -->
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/base.css">
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -28,24 +32,19 @@
     <title>Welcome to Flight Optimizer</title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Flight Booking</a>
+<body id="page top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.jsp">Flight Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            About us
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Mission</a></li>
-                            <li><a class="dropdown-item" href="#">Contact</a></li>
-                        </ul>
                     </li>
 
                     <li class="nav-item">
@@ -60,27 +59,48 @@
         </div>
     </nav>
 
-    <div class="container" id="flight-search-module">
-        <form action="search-flight" method="post">
-            <div class="modal-body row g-3">				
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class="mx-auto my-0 text-uppercase">CS411 Flight Booker</h1>
+                    <h2 class="text-white-50 mx-auto mt-2 mb-5">A place to book your flight ticket </h2>
+                    <a class="btn btn-primary" href="#search-flight-section">Search Flight</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section text-center" id="search-flight-section">
+        <!--<div class="jumbotron d-flex align-items-center min-vh-100">-->
+        <form action="search-flight" method="post">    
+            <div class="container px-4 px-lg-5" id="flight-search-module">
+
+                <h1>Flight Search</h1>
+                <hr></hr>
                 <div class="form-inputs">
                     <label for="from" class="form-label">From</label>
-                    <input type="text" class="form-control" id="from-loc" name="from" required></div>
+                    <input type="text" class="form-control" id="from-loc" name="from" required>
+                </div>
                 <div class="form-inputs">
                     <label for="to" class="form-label">To</label>
-                    <input type="text" class="form-control" id="to-loc" name="to" required></div>
+                    <input type="text" class="form-control" id="to-loc" name="to" required>
+                </div>
                 <div class="form-inputs">
                     <label for="date" class="form-label">Date</label>
                     <div class="input-group has-validation">
                         <input type="date" class="form-control" id="time-in" name="departureTime" required>
                     </div>
 
-                    <br><button id="button" class="btn btn-light" type="submit" onclick="flight.submitValues(event)">Search</button>
+                    <br><button id="button" class="btn btn-primary" type="submit" onclick="flight.submitValues(event)">Search</button>
 
-                </div>  
+                </div>    
         </form>
-    </div>
-            
+        <!--</div>-->
+
+    </section>
+
 
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

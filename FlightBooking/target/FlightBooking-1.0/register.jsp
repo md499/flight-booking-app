@@ -7,7 +7,7 @@
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" integrity="sha512-YDChav1pUAodyH1Ja7PIpEDUOoFROpZi5Lb7pY8+9+kU8UTr3J8SI8QO7SRuf4qdDKb5OI0xSt4Vk1wiYjBXgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./css/register_form.css">
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js" integrity="sha512-Vp2UimVVK8kNOjXqqj/B0Fyo96SDPj9OCSm1vmYSrLYF3mwIOBXh/yRZDVKo8NemQn1GUjjK0vFJuCSCkYai/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -61,7 +61,7 @@
                             <input type="password" class="form-control" id="password-in" aria-describedby="last-name-icon" name="password" placeholder="Password" required>
                         </div>
                     </div>
-                    
+
                     <div class="col-8">
                         <p>By clicking Sign Up, you agree on our <a href="#">terms and condition</a>.</p>
                     </div>
@@ -69,6 +69,10 @@
                         <button type="submit" class="btn btn-primary" id="sign-up-btn" value="register">Sign Up</button>
                     </div>
                 </form>
+                <hr></hr>
+                <div class="col-12 text-center">
+                    <p> Already has an account? Log in <a href="./login">here</a></p>
+                </div>
             </div>
         </div>
 
