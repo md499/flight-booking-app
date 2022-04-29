@@ -17,7 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Flight Booker - Log In</title>
     </head>
-    <body>       
+    <body id="log-in-body">       
         <div class="jumbotron d-flex align-items-center min-vh-100">
             <div class="container">
                 <h1>Log In</h1>
