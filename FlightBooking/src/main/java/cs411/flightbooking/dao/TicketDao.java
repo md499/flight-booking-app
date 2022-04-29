@@ -1,13 +1,11 @@
 package cs411.flightbooking.dao;
 
-import cs411.flightbooking.models.Flight;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import cs411.flightbooking.models.Ticket;
 import java.sql.ResultSet;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,8 +13,14 @@ import java.util.logging.Logger;
 
 public class TicketDao implements DAO<Ticket> {
 
+    /* Attributes */
     private Connection conn;
 
+    /**
+     * Constructor - initialize a connection with the specified database's name
+     *
+     * @param dbName is the name of a database name
+     */
     public TicketDao(String dbName) {
         try {
             this.conn = DBConn.createConnection(dbName);
@@ -25,6 +29,11 @@ public class TicketDao implements DAO<Ticket> {
         }
     }
 
+    /**
+     * Constructor - initialize a connection with the default database name
+     * cs411
+     *
+     */
     public TicketDao() {
         try {
             this.conn = DBConn.defaultConnection();
@@ -33,6 +42,12 @@ public class TicketDao implements DAO<Ticket> {
         }
     }
 
+    /**
+     * getTicketForUser -
+     *
+     * @param email is the email of a user
+     * @return all tickets belong to this user
+     */
     public List<Ticket> getTicketsForUser(String email) {
         String GET_TICKETS_SQL = "SELECT `ticket`.`user_email`,\n"
                 + "    `ticket`.`flight_id`\n"
@@ -62,18 +77,17 @@ public class TicketDao implements DAO<Ticket> {
 
     @Override
     public int insert(Ticket ticket) {
-        // MySQL command for adding user info
+        // MySQL command for adding ticket info
         String INSERT_TICKET_SQL = "INSERT INTO `cs411`.`ticket`\n"
                 + "(`user_email`,\n"
                 + "`flight_id`)\n"
                 + "VALUES\n"
                 + "(?,?);";
 
-        // Establish connection with mysql server
         int result = 0;
 
         try {
-            // Statements for adding user info
+            // Statements for adding ticket info
             PreparedStatement statements = this.conn.prepareStatement(INSERT_TICKET_SQL);
             statements.setString(1, ticket.getUserEmail());
             statements.setInt(2, ticket.getFlightId());
@@ -88,5 +102,4 @@ public class TicketDao implements DAO<Ticket> {
 
         return result;
     }
-
 }
