@@ -90,10 +90,10 @@ public class RegisterServlet extends HttpServlet {
         RequestDispatcher view;
         // Insert new user into the database
         if (this.userdao.insert(user) == 0) {
-            request.setAttribute("error", "Email has already been registered");
+            request.setAttribute("registerError", "Email has already been registered");
             view = request.getRequestDispatcher("/register.jsp");
         } else {
-            request.setAttribute("error", "");
+            request.setAttribute("registerError", "");
             view = request.getRequestDispatcher("/login");
         }
 

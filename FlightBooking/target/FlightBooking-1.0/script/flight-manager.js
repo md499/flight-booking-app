@@ -112,7 +112,6 @@ $(function () {
     });
 
     $("#departure-time").change(function () {
-        console.log($(this));
         let departureTimeString = $(this).val();
         let departureTime = new Date(departureTimeString);
 
@@ -129,7 +128,6 @@ $(function () {
     });
 
     $("#arrival-time").change(function () {
-        console.log($(this));
         let arrivalTimeString = $(this).val();
         let arrivalTime = new Date(arrivalTimeString);
 
@@ -146,7 +144,6 @@ $(function () {
     });
 
     $("#departureTime").change(function () {
-        console.log($(this));
         let departureTimeString = $(this).val();
         let departureTime = new Date(departureTimeString);
 

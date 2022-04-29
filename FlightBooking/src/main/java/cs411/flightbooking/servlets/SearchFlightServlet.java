@@ -20,8 +20,9 @@ import java.util.List;
  *
  * @author sofi
  */
-@WebServlet(name = "SearchFlightServlet", urlPatterns = {"/search-flight"})
+@WebServlet(name = "SearchFlightServlet", urlPatterns = {"/search-flight", "/user/serch-flight"})
 public class SearchFlightServlet extends HttpServlet {
+
     // initialize the connection between db and web
     private FlightDao flightdao;
 
@@ -29,6 +30,7 @@ public class SearchFlightServlet extends HttpServlet {
     public void init() {
         this.flightdao = new FlightDao();
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,7 +48,7 @@ public class SearchFlightServlet extends HttpServlet {
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet SearchFlightServlet</title>");            
+//            out.println("<title>Servlet SearchFlightServlet</title>");
 //            out.println("</head>");
 //            out.println("<body>");
 //            out.println("<h1>Servlet SearchFlightServlet at " + request.getContextPath() + "</h1>");
@@ -82,15 +84,15 @@ public class SearchFlightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-          String dLocation = request.getParameter("from");
-          String aLocation = request.getParameter("to");
-          String Date = request.getParameter("departureTime");
-          
-          List <Flight> flights = this.flightdao.getFlightFromSearch(dLocation, aLocation, Date+"T00:00");
-          
-          request.setAttribute("search-result" , flights);
-          RequestDispatcher view = request.getServletContext().getRequestDispatcher("/search-flight.jsp");
-          view.forward(request, response);
+        String dLocation = request.getParameter("from");
+        String aLocation = request.getParameter("to");
+        String Date = request.getParameter("departureTime");
+
+        List<Flight> flights = this.flightdao.getFlightFromSearch(dLocation, aLocation, Date + "T00:00");
+
+        request.setAttribute("search-result", flights);
+        RequestDispatcher view = request.getServletContext().getRequestDispatcher("/search-flight.jsp");
+        view.forward(request, response);
 
     }
 

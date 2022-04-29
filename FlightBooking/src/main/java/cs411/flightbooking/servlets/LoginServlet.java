@@ -100,29 +100,33 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        RequestDispatcher view;
 
         User user = this.userdao.getUser(email);
 
         if (user != null) {
+            session.setAttribute("username", user.getEmail());
             if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
                 session.setAttribute("role", "admin");
-                response.sendRedirect("http://localhost:8080/FlightBooking/admin/flight-manager");
+                request.setAttribute("loginError", "");
+                view = request.getRequestDispatcher("/admin/flight-manager");
             } else {
                 if (password.equals(user.getPassword())) {
                     session.setAttribute("role", "user");
 
                     request.setAttribute("loginError", "");
-                    response.sendRedirect("user.jsp");
+                    view = request.getRequestDispatcher("user.jsp");
                 } else {
                     request.setAttribute("loginError", "Incorrect email or password");
-                    response.sendRedirect("login.jsp");
+                    view = request.getRequestDispatcher("login.jsp");
                 }
             }
         } else {
             request.setAttribute("loginError", "Incorrect email or password");
-            response.sendRedirect("login.jsp");
+            view = request.getRequestDispatcher("login.jsp");
         }
 
+        view.forward(request, response);
     }
 
     // Insert new user into the database

@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @author sofi
  */
-@WebServlet(name = "BookFlightServlet", urlPatterns = {"/book-flight"})
+@WebServlet(name = "BookFlightServlet", urlPatterns = {"/book-flight", "/user/book-flight"})
 public class BookFlightServlet extends HttpServlet {
 
     private FlightDao flightdao;
@@ -84,6 +85,12 @@ public class BookFlightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        HttpSession session = request.getSession();
+
+        String role = (String) session.getAttribute("role");
+        if (role == null || role.equals("admin")) {
+            response.sendRedirect("login.jsp");
+        }
         int flight_id = Integer.parseInt(request.getParameter("booked-flight-id"));
 
         Flight choseFlight = this.flightdao.getFlight(flight_id);
