@@ -41,7 +41,13 @@
                     <div class="col-12 text-center">
                         <button type="submit" class="btn btn-primary text" id="log-in-btn" value="register">Log In</button>
                     </div>
+
+
                 </form>
+                <hr>
+                <div class="col-12 text-center">
+                    <p> Need an account? Sign up <a href="./register">here</a></p>
+                </div>
             </div>
         </div>
 
@@ -56,4 +62,3 @@
         </script>
     </body>
 </html>
-     

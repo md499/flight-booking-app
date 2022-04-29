@@ -1,17 +1,19 @@
-body, div, h1, h2, h3, h4, h5, h6, 
-form, fieldset, input, textarea, p, blockquote, th, td { 
-  padding:0;
-  margin:0;}
+body, div, h1, h2, h3, h4, h5, h6,
+form, fieldset, input, textarea, p, blockquote, th, td {
+    padding:0;
+}
 
-:focus {outline:none}
+:focus {
+    outline:none
+}
 
 body,
 input,
 textarea,
 select {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  color: #4c4c4c;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #4c4c4c;
 }
 
 body {
@@ -19,50 +21,50 @@ body {
 }
 
 p {
-  font-size: 14px;
+    font-size: 14px;
 }
 h1 {
-  font-size: 32px;
-  font-weight: 300;
-  color: #4c4c4c;
-  text-align: center;
-  padding-top: 10px;
-  margin-bottom: 10px;
+    font-size: 32px;
+    font-weight: 300;
+    color: #4c4c4c;
+    text-align: center;
+    padding-top: 10px;
+    margin-bottom: 10px;
 }
 
 span {
     background-color: #3a57af;
 }
 .container {
-  margin: 20px auto;
-  width: 343px; 
-  border-radius: 8px/7px; 
-  background-color: #ebebeb; 
-  box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-  border: solid 1px #cbc9c9;
+    margin: 20px auto;
+    width: 343px;
+    border-radius: 8px/7px;
+    background-color: #ebebeb;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border: solid 1px #cbc9c9;
 }
 
 #sign-up-btn {
-  margin: 10px 2px 20px 0px;
-  float: right;
-  width: 90px; 
-  height: 47px; 
-  box-shadow: 0 3px rgba(58,87,175,.75);
-  top: 0px;
-  position: relative;
+    margin: -5px 2px 0px 0px;
+    float: right;
+    width: 90px;
+    height: 47px;
+    box-shadow: 0 3px rgba(58,87,175,.75);
+    top: 0px;
+    position: relative;
 }
 
 #log-in-btn {
-  margin: 10px 2px 20px 0px;
-  width: 90px; 
-  height: 47px; 
-  box-shadow: 0 3px rgba(58,87,175,.75);
-  top: 0px;
-  position: relative;
+    margin: -5px 2px 0px 0px;
+    width: 90px;
+    height: 47px;
+    box-shadow: 0 3px rgba(58,87,175,.75);
+    top: 0px;
+    position: relative;
 }
 
 .col-8 {
     flex: 0 0 auto;
     width: 66.66666667%;
-    margin: 29px 0px 0px 0px;
+    margin: 15px 0px -20px 0px;
 }
