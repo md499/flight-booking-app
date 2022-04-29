@@ -13,6 +13,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%Flight flight = (Flight) request.getAttribute("booked-flight");
+        if (flight == null) {%>
+        <p>Flight Booked Fail </p>
+        <%} else {%>
+        <p>Flight Booked Success</p>
+        <%}%>
+        
     </body>
 </html>
