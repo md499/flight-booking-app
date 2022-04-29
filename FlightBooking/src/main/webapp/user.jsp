@@ -3,7 +3,8 @@
     Created on : Mar 31, 2022, 11:59:15 AM
     Author     : minhl
 --%>
-
+<%@page import="cs411.flightbooking.models.Flight"%>
+<%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,12 +21,6 @@
         <title>Home Page</title>
     </head>
     <body>
-        <% 
-            String role = (String) session.getAttribute("role");
-            if (role == null || role.equals("admin")) {
-            response.sendRedirect("login.jsp");
-            }
-        %>
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
@@ -61,7 +56,7 @@
         <h1>Welcome! You login successfully</h1>
 
         <form action="./user/search-flight" id="search-form" method="post">    
-            <div class="container px-4 px-lg-5" id="flight-search-module">
+            <div class="container px-4 px-lg-5" id="flight-search-form">
 
                 <h1>Flight Search</h1>
                 <hr></hr>
@@ -78,13 +73,56 @@
                     <div class="input-group has-validation">
                         <input type="date" class="form-control" id="time-in" name="departureTime" required>
                     </div>
-
-                    <br>
-                    <div class="text-center">
+                </div>
+                <br>
+                <div class="text-center">
                     <button id="button" class="btn btn-primary" type="submit" onclick="flight.submitValues(event)">Search</button>
-                    </div>
-                </div>    
+                </div>
+            </div>    
         </form>
+
+        <h1> Flight History </h1>
+        <hr></hr>
+
+        <div class="container">
+            <table class="table table-hover table-responsive" id="all-flight-table">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">ID</th>
+                        <th scope="col">Departure</th>
+                        <th scope="col">Arrival</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Capacity</th>
+                        <th scope="col">Available</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <%ArrayList<Flight> flights =
+                            (ArrayList<Flight>)request.getAttribute("flight-history");
+                            if (flights == null || flights.isEmpty()) {%>
+                    <tr>
+                        <td colspan="8">
+                            There is no flight to show.
+                        </td>
+                    </tr> <%} else {
+                for(Flight flight:flights){%>
+                    <tr>
+                        <th scope="row"><%=flight.getId()%></th>
+                        <td id="departure-loc-col"><%=flight.getDepartureLocation()%></td>
+                        <td id="arrival-loc-col"><%=flight.getArrivalLocation()%></td>
+                        <td id="departure-time-col"><%=flight.getDepartureTimeString()%></td>
+                        <td id="arrival-time-col"><%=flight.getArrivalTimeString()%></td>
+                        <td id="capacity-col"><%=flight.getCapacity()%></td>
+                        <td id="available-col"><%=flight.getAvailable()%></td>
+                        <td id="price-col"><%=flight.getPrice()%></td>
+                    </tr>
+                    <%}}%>
+
+                </tbody>
+            </table>
+        </div>
 
         <!-- Bootstrap Script -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
@@ -96,18 +134,18 @@
 
         <!-- For refreshing page -->
         <script>
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
-            }
+                        if (window.history.replaceState) {
+                            window.history.replaceState(null, null, window.location.href);
+                        }
         </script>       
-        
+
         <!-- Local JS Files -->
         <script type="text/javascript" src="script/airport_search/search.js"></script>
         <script type="text/javascript" src="script/airport_search/main.js"></script>
 
         <script>
-            AirportInput("#from-loc");
-            AirportInput("#to-loc");
+                        AirportInput("#from-loc");
+                        AirportInput("#to-loc");
         </script>
     </body>
 

@@ -35,7 +35,7 @@ h1 {
 span {
     background-color: #3a57af;
 }
-.container {
+#flight-search-form, #log-in-form, #register-form  {
     margin: 20px auto;
     width: 343px;
     border-radius: 8px/7px;

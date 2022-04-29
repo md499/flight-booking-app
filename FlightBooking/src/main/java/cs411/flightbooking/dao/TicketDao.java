@@ -32,10 +32,11 @@ public class TicketDao implements DAO<Ticket> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public List<Ticket> getTicketsFromSearch(String email) {
-        String GET_TICKETS_SQL = "SELECT `ticket`.`user_email`,\n" +
-                                "    `ticket`.`flight_id`\n" +
-                                "FROM `cs411`.`ticket` where user_email = ?;";
+
+    public List<Ticket> getTicketsForUser(String email) {
+        String GET_TICKETS_SQL = "SELECT `ticket`.`user_email`,\n"
+                + "    `ticket`.`flight_id`\n"
+                + "FROM `cs411`.`ticket` where user_email = ?;";
 
         List<Ticket> tickets = new ArrayList<>();
 
@@ -87,6 +88,5 @@ public class TicketDao implements DAO<Ticket> {
 
         return result;
     }
-    
 
 }

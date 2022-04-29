@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import cs411.flightbooking.models.Flight;
+import cs411.flightbooking.models.Ticket;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -268,6 +269,17 @@ public class FlightDao implements DAO<Flight> {
         }
 
         return result;
+    }
+
+    public List<Flight> getFlightsFromTickets(List<Ticket> tickets) {
+        List<Flight> flights = new ArrayList<>();
+
+        for (Ticket ticket : tickets) {
+            Flight flight = this.getFlight(ticket.getFlightId());
+            flights.add(flight);
+        }
+
+        return flights;
     }
 
     public static void main(String[] args) {

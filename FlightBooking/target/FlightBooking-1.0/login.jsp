@@ -19,7 +19,7 @@
     </head>
     <body id="log-in-body">       
         <div class="jumbotron d-flex align-items-center min-vh-100">
-            <div class="container">
+            <div class="container" id="log-in-form">
                 <h1>Log In</h1>
                 <hr></hr>
 
