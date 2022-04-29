@@ -111,7 +111,7 @@ public class LoginServlet extends HttpServlet {
             if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
                 session.setAttribute("role", "admin");
                 request.setAttribute("loginError", "");
-                view = request.getRequestDispatcher("/admin/flight-manager");
+                response.sendRedirect("./admin/flight-manager");
             } else {
                 if (password.equals(user.getPassword())) {
                     session.setAttribute("role", "user");

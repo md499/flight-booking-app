@@ -87,10 +87,10 @@ public class BookFlightServlet extends HttpServlet {
         //processRequest(request, response);
         HttpSession session = request.getSession();
 
-        String role = (String) session.getAttribute("role");
-        if (role == null || role.equals("admin")) {
-            response.sendRedirect("login.jsp");
-        }
+//        String role = (String) session.getAttribute("role");
+//        if (role == null || role.equals("admin")) {
+//            response.sendRedirect("login.jsp");
+//        }
         int flight_id = Integer.parseInt(request.getParameter("booked-flight-id"));
 
         Flight choseFlight = this.flightdao.getFlight(flight_id);

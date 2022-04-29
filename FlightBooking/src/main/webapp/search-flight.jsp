@@ -92,7 +92,7 @@ int i=0;
                     <td id="arrival-time-col"><%=flight.getArrivalTimeString()%></td>
                     <td id="capacity-col" hidden><%=flight.getCapacity()%></td>
                     <td id="available-col"><%=flight.getAvailable()%></td>
-                    <td class="td-sort-asc" id="price-col" >$<%=flight.getPrice()%></td>
+                    <td id="price-col" >$<%=flight.getPrice()%></td>
                     <input id="flight-info" name="booked-flight-id" value="<%=flight.getId()%>" hidden>
                     <td id="book-col"><button class="btn btn-primary" type="submit">Book now</button></td>
             </form>

@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author sofi
  */
-@WebServlet(name = "SearchFlightServlet", urlPatterns = {"/search-flight", "/user/serch-flight"})
+@WebServlet(name = "SearchFlightServlet", urlPatterns = {"/search-flight", "/user/search-flight"})
 public class SearchFlightServlet extends HttpServlet {
 
     // initialize the connection between db and web
