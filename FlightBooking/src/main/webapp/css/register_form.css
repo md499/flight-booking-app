@@ -17,7 +17,7 @@ select {
 }
 
 #log-in-body, #register-body {
-    background-color: #00ffac;
+    background-color: white;
 }
 
 p {

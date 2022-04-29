@@ -280,7 +280,7 @@
                     <td id="arrival-time-col"><%=flight.getArrivalTimeString()%></td>
                     <td id="capacity-col"><%=flight.getCapacity()%></td>
                     <td id="available-col"><%=flight.getAvailable()%></td>
-                    <td id="price-col"><%=flight.getPrice()%></td>
+                    <td id="price-col">$<%=flight.getPrice()%></td>
                 </tr>
                 <%}}%>
 
