@@ -32,7 +32,7 @@ public class TicketDao implements DAO<Ticket> {
             Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public List<Ticket> getFlightsFromSearch(String email) {
+    public List<Ticket> getTicketsFromSearch(String email) {
         String GET_TICKETS_SQL = "SELECT `ticket`.`user_email`,\n" +
                                 "    `ticket`.`flight_id`\n" +
                                 "FROM `cs411`.`ticket` where user_email = ?;";
