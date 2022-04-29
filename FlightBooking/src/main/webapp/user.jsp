@@ -146,6 +146,10 @@
         <script>
                         AirportInput("#from-loc");
                         AirportInput("#to-loc");
+                        
+                        let form = $("#search-form");
+                        let today = new Date();
+                        form.find("#time-in:first").attr("min", today.toISOString().split('T')[0]);
         </script>
     </body>
 
