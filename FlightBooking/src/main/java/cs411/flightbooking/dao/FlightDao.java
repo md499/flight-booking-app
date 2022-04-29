@@ -184,7 +184,7 @@ public class FlightDao implements DAO<Flight> {
             stm.setTimestamp(4, Timestamp.valueOf(newFlight.getArrivalTime()));
 
             stm.setInt(5, newFlight.getCapacity());
-            stm.setInt(6, newFlight.getCapacity());
+            stm.setInt(6, newFlight.getAvailable());
             stm.setDouble(7, newFlight.getPrice());
             stm.setDouble(8, newFlight.getId());
 
@@ -258,6 +258,16 @@ public class FlightDao implements DAO<Flight> {
         }
         return bookedFlight;
 
+    }
+
+    public int bookFlight(String userEmail, Flight bookedFlight) {
+        int result = 0;
+        if (bookedFlight != null) {
+            bookedFlight.isBooked();
+            this.update(bookedFlight);
+        }
+
+        return result;
     }
 
     public static void main(String[] args) {

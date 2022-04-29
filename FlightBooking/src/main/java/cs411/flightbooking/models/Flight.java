@@ -94,6 +94,10 @@ public class Flight {
         return price;
     }
 
+    public void isBooked() {
+        this.available -= 1;
+    }
+
     /**
      *
      * @return the String representation of a Flight object

@@ -107,7 +107,7 @@ public class LoginServlet extends HttpServlet {
         System.out.println(user);
 
         if (user != null) {
-            session.setAttribute("username", user.getEmail());
+            session.setAttribute("userEmail", user.getEmail());
             if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
                 session.setAttribute("role", "admin");
                 request.setAttribute("loginError", "");

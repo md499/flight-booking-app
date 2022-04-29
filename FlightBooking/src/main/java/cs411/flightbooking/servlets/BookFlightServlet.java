@@ -92,9 +92,16 @@ public class BookFlightServlet extends HttpServlet {
 //            response.sendRedirect("login.jsp");
 //        }
         int flight_id = Integer.parseInt(request.getParameter("booked-flight-id"));
-
         Flight choseFlight = this.flightdao.getFlight(flight_id);
+        String user_email = (String) session.getAttribute("userEmail");
+        System.out.println(user_email);
 
+        if (user_email == null || user_email.equals("")) {
+            response.sendRedirect("user");
+            return;
+        } else {
+            this.flightdao.bookFlight(user_email, choseFlight);
+        }
         System.out.println(choseFlight);
 
         request.setAttribute("booked-flight", choseFlight);
