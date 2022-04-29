@@ -87,7 +87,6 @@ public class FlightDao implements DAO<Flight> {
 
         return result;
     }
-    
 
     public List<Flight> selectAllFlights() {
         List<Flight> flights = new ArrayList<>();
@@ -123,28 +122,25 @@ public class FlightDao implements DAO<Flight> {
     }
 
     public List<Flight> getFlightFromSearch(String DLocation, String ALocation, String Date) {
-        String GET_FLIGHT_SQL = "SELECT `flight`.`flight_id`,`flight`.`departureLocation`,\n" +
-"`flight`.`arrivalLocation`,`flight`.`departureTime`,`flight`.`arrivalTime`,\n" +
-"                `flight`.`capacity`,`flight`.`available`,`flight`.`price`  \n" +
-"                FROM `cs411`.`flight` where departureLocation = ? AND arrivalLocation = ? AND departureTime >= ?";
+        String GET_FLIGHT_SQL = "SELECT `flight`.`flight_id`,`flight`.`departureLocation`,\n"
+                + "`flight`.`arrivalLocation`,`flight`.`departureTime`,`flight`.`arrivalTime`,\n"
+                + "                `flight`.`capacity`,`flight`.`available`,`flight`.`price`  \n"
+                + "                FROM `cs411`.`flight` where departureLocation = ? AND arrivalLocation = ? AND departureTime >= ?";
 
-        List <Flight> flights = new ArrayList<>();
+        List<Flight> flights = new ArrayList<>();
 
         try {
             PreparedStatement statements = this.conn.prepareStatement(GET_FLIGHT_SQL);
-            statements.setString(1,DLocation);
-            statements.setString(2,ALocation);
+            statements.setString(1, DLocation);
+            statements.setString(2, ALocation);
             //statements.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(Date)));
-            statements.setString(3,Date);
-
-            
-            
+            statements.setString(3, Date);
 
             ResultSet rs = statements.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 int id = rs.getInt("flight_id");
-                
+
                 String departLoc = rs.getString("departureLocation");
                 String arrivalLoc = rs.getString("arrivalLocation");
 
@@ -221,6 +217,47 @@ public class FlightDao implements DAO<Flight> {
             Logger.getLogger(FlightDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
+    }
+
+    public Flight getFlight(int flight_id) {
+        String GET_FLIGHT_QUERY = "SELECT `flight`.`flight_id`,\n"
+                + "`flight`.`departureLocation`,\n"
+                + "`flight`.`arrivalLocation`,\n"
+                + "`flight`.`departureTime`,\n"
+                + "`flight`.`arrivalTime`,\n"
+                + "`flight`.`capacity`,\n"
+                + "`flight`.`available`,\n"
+                + "`flight`.`price`\n"
+                + "FROM `cs411`.`flight` WHERE flight_id = ?";
+
+        Flight bookedFlight = null;
+
+        try {
+            PreparedStatement statements = this.conn.prepareStatement(GET_FLIGHT_QUERY);
+            statements.setInt(1, flight_id);
+
+            ResultSet rs = statements.executeQuery();
+
+            rs.next();
+            int id = rs.getInt("flight_id");
+
+            String departLoc = rs.getString("departureLocation");
+            String arrivalLoc = rs.getString("arrivalLocation");
+
+            LocalDateTime departTime = rs.getTimestamp("departureTime").toLocalDateTime();
+            LocalDateTime arrivalTime = rs.getTimestamp("arrivalTime").toLocalDateTime();
+
+            int capacity = rs.getInt("capacity");
+            int available = rs.getInt("available");
+            double price = rs.getDouble("price");
+
+            bookedFlight = new Flight(id, departLoc, arrivalLoc, departTime, arrivalTime, capacity, available, price);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bookedFlight;
+
     }
 
     public static void main(String[] args) {

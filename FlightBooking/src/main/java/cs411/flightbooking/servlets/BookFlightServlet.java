@@ -4,6 +4,7 @@
  */
 package cs411.flightbooking.servlets;
 
+import cs411.flightbooking.dao.FlightDao;
 import cs411.flightbooking.models.Flight;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -23,6 +24,13 @@ import java.util.List;
 @WebServlet(name = "BookFlightServlet", urlPatterns = {"/book-flight"})
 public class BookFlightServlet extends HttpServlet {
 
+    private FlightDao flightdao;
+
+    @Override
+    public void init() {
+        this.flightdao = new FlightDao();
+    }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,7 +48,7 @@ public class BookFlightServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookFlightServlet</title>");            
+            out.println("<title>Servlet BookFlightServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BookFlightServlet at " + request.getContextPath() + "</h1>");
@@ -76,18 +84,15 @@ public class BookFlightServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
-        List<Flight> flights = (ArrayList<Flight>) request.getAttribute("search-result");
-        if (flights == null) {
-            response.sendRedirect("error.jsp");
-        } else {
-            int i = Integer.parseInt(request.getParameter("booked-flight-index"));
-            request.setAttribute("booked-flight", flights.get(i));
-            RequestDispatcher view = request.getRequestDispatcher("book-flight.jsp");
-            view.forward(request, response);
-            
-        }
-        
+        int flight_id = Integer.parseInt(request.getParameter("booked-flight-id"));
+
+        Flight choseFlight = this.flightdao.getFlight(flight_id);
+
+        System.out.println(choseFlight);
+
+        request.setAttribute("booked-flight", choseFlight);
+        RequestDispatcher view = request.getRequestDispatcher("/book-flight.jsp");
+        view.forward(request, response);
     }
 
     /**
