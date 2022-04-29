@@ -40,3 +40,9 @@ document.querySelectorAll(".table-sortable td").forEach(header => {
         sortCol(element, hIndx, !isAsc);
     });
 });
+
+$("#search-button").click(function () {
+        let form = $("#search-flights");
+        let today = new Date();
+        form.find("#departure-time:first").attr("min", today.toISOString().split('T')[0] + "T00:00");
+});
