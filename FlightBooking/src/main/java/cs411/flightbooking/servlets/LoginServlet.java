@@ -103,6 +103,9 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher view = null;
 
         User user = this.userdao.getUser(email);
+        
+        
+        System.out.println(user);
 
         if (user != null) {
             session.setAttribute("username", user.getEmail());
