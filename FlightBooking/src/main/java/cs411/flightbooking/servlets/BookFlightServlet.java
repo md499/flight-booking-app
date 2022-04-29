@@ -6,6 +6,10 @@ package cs411.flightbooking.servlets;
 
 import cs411.flightbooking.dao.FlightDao;
 import cs411.flightbooking.models.Flight;
+
+import cs411.flightbooking.dao.TicketDao;
+import cs411.flightbooking.models.Ticket;
+
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +19,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -26,10 +28,12 @@ import java.util.List;
 public class BookFlightServlet extends HttpServlet {
 
     private FlightDao flightdao;
+    private TicketDao ticketdao;
 
     @Override
     public void init() {
         this.flightdao = new FlightDao();
+        this.ticketdao = new TicketDao();
     }
 
     /**
@@ -101,6 +105,7 @@ public class BookFlightServlet extends HttpServlet {
             return;
         } else {
             this.flightdao.bookFlight(user_email, choseFlight);
+            this.ticketdao.insert(new Ticket(user_email, flight_id));
         }
         System.out.println(choseFlight);
 

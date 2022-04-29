@@ -104,8 +104,6 @@ public class LoginServlet extends HttpServlet {
 
         User user = this.userdao.getUser(email);
 
-        System.out.println(user);
-
         if (user != null) {
             session.setAttribute("userEmail", user.getEmail());
             if (user.getEmail().equals("admin") && user.getPassword().equals(password)) {
