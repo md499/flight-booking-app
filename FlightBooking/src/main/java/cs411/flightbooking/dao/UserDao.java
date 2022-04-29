@@ -15,8 +15,14 @@ import java.util.logging.Logger;
  */
 public class UserDao implements DAO<User> {
 
+    /* Attributes */
     private Connection conn;
 
+    /**
+     * Constructor - initialize a connection with the specified database's name
+     *
+     * @param dbName is the name of a database name
+     */
     public UserDao(String dbName) {
         try {
             this.conn = DBConn.createConnection(dbName);
@@ -25,6 +31,10 @@ public class UserDao implements DAO<User> {
         }
     }
 
+    /**
+     * Constructor - initialize a connection with the default database name
+     * cs411
+     */
     public UserDao() {
         try {
             this.conn = DBConn.defaultConnection();
@@ -34,11 +44,10 @@ public class UserDao implements DAO<User> {
     }
 
     /**
-     * insert a newly registered user into the database
+     * getUser -
      *
-     * @param user
-     * @return
-     * @throws java.lang.ClassNotFoundException
+     * @param email is the email of the user
+     * @return a User object with the matching email from the database
      */
     public User getUser(String email) {
 
@@ -94,25 +103,18 @@ public class UserDao implements DAO<User> {
             System.out.println("Statement: " + statements);
 
             result = statements.executeUpdate();
-        } catch (SQLException e) {
-            // connection fails
-            System.out.println("Register Failed");
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(FlightDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return result;
     }
 
-//    public static void main(String[] args) {
-//        User user = new User("min", "le", "min@bu.ed", "12345");
-//
-//        try {
-//            UserDao userdao = new UserDao(Secrets.mysql_url, Secrets.username, Secrets.password);
-//            System.out.println("Create userdao success");
-//            userdao.insert(user);
-//            System.out.println("Register success");
-//        } catch (Exception ex) {
-//            Logger.getLogger(UserDao.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
+    /* Testing */
+    public static void main(String[] args) {
+        User user = new User("min", "le", "min@bu.ed", "12345");
+        UserDao userdao = new UserDao();
+
+        userdao.insert(user);
+    }
 }

@@ -21,6 +21,12 @@ public class DBConn {
     private static final String MYSQL_USERNAME = "admin";
     private static final String MYSQL_PASSWORD = "12MyAWS34!";
 
+    /**
+     * createConnection -
+     *
+     * @param dbName is the name of the database
+     * @return the connection with the specified database's name
+     */
     public static Connection createConnection(String dbName)
             throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,6 +36,12 @@ public class DBConn {
         return conn;
     }
 
+    /**
+     * defaultCOnnection
+     *
+     * @return the connection the the default database named cs411
+     * @throws java.lang.ClassNotFoundException
+     */
     public static Connection defaultConnection()
             throws ClassNotFoundException, SQLException {
         return createConnection("cs411");

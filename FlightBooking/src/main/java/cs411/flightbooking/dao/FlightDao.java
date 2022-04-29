@@ -20,8 +20,14 @@ import java.util.logging.Logger;
  */
 public class FlightDao implements DAO<Flight> {
 
+    /* Attributes */
     private Connection conn;
 
+    /**
+     * Constructor - initialize a connection with the specified database's name
+     *
+     * @param dbName is the name of a database name
+     */
     public FlightDao(String dbName) {
         try {
             this.conn = DBConn.createConnection(dbName);
@@ -30,6 +36,11 @@ public class FlightDao implements DAO<Flight> {
         }
     }
 
+    /**
+     * Constructor - initialize a connection with the default database name
+     * cs411
+     *
+     */
     public FlightDao() {
         try {
             this.conn = DBConn.defaultConnection();
@@ -62,7 +73,6 @@ public class FlightDao implements DAO<Flight> {
 
         int result = -1;
 
-        //System.out.println(flight);
         try {
             // Statements for adding flight info
             PreparedStatement statement = this.conn.prepareStatement(INSERT_FLIGHT_SQL);
@@ -89,6 +99,11 @@ public class FlightDao implements DAO<Flight> {
         return result;
     }
 
+    /**
+     * selectAllFlights -
+     *
+     * @return a list of all Flight instances store in the database
+     */
     public List<Flight> selectAllFlights() {
         List<Flight> flights = new ArrayList<>();
 
@@ -122,6 +137,17 @@ public class FlightDao implements DAO<Flight> {
         return flights;
     }
 
+    /**
+     * getFlightFromSearch -
+     *
+     * @param DLocation is the departure location flights
+     * @param ALocation is the arrival location of the flights
+     * @param Date is the date of departure
+     *
+     * @return a list of all Flights instances from the database that have the
+     * same specified departure and arrival locations and departure date on or
+     * after Date
+     */
     public List<Flight> getFlightFromSearch(String DLocation, String ALocation, String Date) {
         String GET_FLIGHT_SQL = "SELECT `flight`.`flight_id`,`flight`.`departureLocation`,\n"
                 + "`flight`.`arrivalLocation`,`flight`.`departureTime`,`flight`.`arrivalTime`,\n"
@@ -134,7 +160,6 @@ public class FlightDao implements DAO<Flight> {
             PreparedStatement statements = this.conn.prepareStatement(GET_FLIGHT_SQL);
             statements.setString(1, DLocation);
             statements.setString(2, ALocation);
-            //statements.setTimestamp(3, Timestamp.valueOf(LocalDateTime.parse(Date)));
             statements.setString(3, Date);
 
             ResultSet rs = statements.executeQuery();
@@ -163,6 +188,13 @@ public class FlightDao implements DAO<Flight> {
         return flights;
     }
 
+    /**
+     * update - change the values of a flight in the database with the matching
+     * flight_id to the specified new flight.
+     *
+     * @param newFlight is an instance of Flight
+     * @return the number of row effected by the change
+     */
     public int update(Flight newFlight) {
         int result = 0;
         String updateQuery = "UPDATE `flight`\n"
@@ -220,6 +252,13 @@ public class FlightDao implements DAO<Flight> {
         return result;
     }
 
+    /**
+     * *
+     * getFlight -
+     *
+     * @param flight_id is the id of a flight
+     * @return a flight from the database that has the specified id
+     */
     public Flight getFlight(int flight_id) {
         String GET_FLIGHT_QUERY = "SELECT `flight`.`flight_id`,\n"
                 + "`flight`.`departureLocation`,\n"
@@ -261,7 +300,14 @@ public class FlightDao implements DAO<Flight> {
 
     }
 
-    public int bookFlight(String userEmail, Flight bookedFlight) {
+    /**
+     * bookFlight - book a flight from the database by decreasing its
+     * availability by one
+     *
+     * @param bookedFlight is the flight that
+     * @return the number of rows affected
+     */
+    public int bookFlight(Flight bookedFlight) {
         int result = 0;
         if (bookedFlight != null) {
             bookedFlight.isBooked();
@@ -271,6 +317,12 @@ public class FlightDao implements DAO<Flight> {
         return result;
     }
 
+    /**
+     * getFlightsFromTickets -
+     *
+     * @param tickets is a list of Ticket objects
+     * @return a list of flights that associate with these tickets
+     */
     public List<Flight> getFlightsFromTickets(List<Ticket> tickets) {
         List<Flight> flights = new ArrayList<>();
 
@@ -282,11 +334,11 @@ public class FlightDao implements DAO<Flight> {
         return flights;
     }
 
+    /**
+     * Testing
+     */
     public static void main(String[] args) {
         FlightDao flightdao = new FlightDao();
-//        Flight flight = new Flight(2, "BOS", "JFK", "2023-05-14 07:00:00", "2023-05-14 10:00:00", 200, 150, 399.99, "ON-TIME");
-
-//        flightdao.insert(flight);
         List<Flight> flights = flightdao.selectAllFlights();
 
         for (Flight myFlight : flights) {

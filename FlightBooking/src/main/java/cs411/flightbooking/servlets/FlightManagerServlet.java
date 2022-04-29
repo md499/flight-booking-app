@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package cs411.flightbooking.servlets;
 
 import cs411.flightbooking.dao.FlightDao;
 import cs411.flightbooking.models.Flight;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,46 +12,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- *
- * @author minhl
+ * FlightManagerServlet - a servlet for connecting with the manager page
  */
 @WebServlet(name = "FlightManagerServlet", urlPatterns = {"/admin/flight-manager"})
 public class FlightManagerServlet extends HttpServlet {
 
-    // initialize the connection between db and web
+    /* Database DAO objects */
     private FlightDao flightdao;
 
     @Override
     public void init() {
         this.flightdao = new FlightDao();
-    }
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try ( PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet FlightManagerServlet</title>");
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet FlightManagerServlet at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-        RequestDispatcher view = request.getRequestDispatcher("flight-manager.jsp");
-        view.forward(request, response);
     }
 
     /**
@@ -89,39 +55,48 @@ public class FlightManagerServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("ACTION");
 
-        if ("add-flight".equals(action)) {
-            String departureLoc = request.getParameter("departureLoc");
-            String arrivalLoc = request.getParameter("arrivalLoc");
+        if (null != action) {
+            switch (action) {
+                case "add-flight": {
+                    String departureLoc = request.getParameter("departureLoc");
+                    String arrivalLoc = request.getParameter("arrivalLoc");
 
-            String departureTime = request.getParameter("departureTime");
-            String arrivalTime = request.getParameter("arrivalTime");
+                    String departureTime = request.getParameter("departureTime");
+                    String arrivalTime = request.getParameter("arrivalTime");
 
-            // available initially equals capacity
-            int capacity = Integer.parseInt(request.getParameter("capacity"));
-            double price = Double.parseDouble(request.getParameter("price"));
+                    // available initially equals capacity
+                    int capacity = Integer.parseInt(request.getParameter("capacity"));
+                    double price = Double.parseDouble(request.getParameter("price"));
+                    Flight newFlight = new Flight(departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, capacity, price);
+                    this.flightdao.insert(newFlight);
+                    break;
+                }
+                case "update-flight": {
+                    int flightID = Integer.parseInt(request.getParameter("flightID"));
 
-            Flight newFlight = new Flight(departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, capacity, price);
-            this.flightdao.insert(newFlight);
-        } else if ("update-flight".equals(action)) {
-            int flightID = Integer.parseInt(request.getParameter("flightID"));
+                    String departureLoc = request.getParameter("departureLoc");
+                    String arrivalLoc = request.getParameter("arrivalLoc");
 
-            String departureLoc = request.getParameter("departureLoc");
-            String arrivalLoc = request.getParameter("arrivalLoc");
+                    String departureTime = request.getParameter("departureTime");
+                    String arrivalTime = request.getParameter("arrivalTime");
 
-            String departureTime = request.getParameter("departureTime");
-            String arrivalTime = request.getParameter("arrivalTime");
+                    int capacity = Integer.parseInt(request.getParameter("capacity"));
+                    int available = capacity - Integer.parseInt(request.getParameter("num-flights-booked"));
+                    double price = Double.parseDouble(request.getParameter("price"));
 
-            // available initially equals capacity
-            int capacity = Integer.parseInt(request.getParameter("capacity"));
-            int available = capacity - Integer.parseInt(request.getParameter("num-flights-booked"));
-            double price = Double.parseDouble(request.getParameter("price"));
-
-            Flight newFlight = new Flight(flightID, departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, available, price);
-            System.out.println(newFlight);
-            this.flightdao.update(newFlight);
-        } else if ("remove-flight".equals(action)) {
-            int flightID = Integer.parseInt(request.getParameter("flightID"));
-            this.flightdao.remove(flightID);
+                    Flight newFlight = new Flight(flightID, departureLoc, arrivalLoc, departureTime, arrivalTime, capacity, available, price);
+                    System.out.println(newFlight);
+                    this.flightdao.update(newFlight);
+                    break;
+                }
+                case "remove-flight": {
+                    int flightID = Integer.parseInt(request.getParameter("flightID"));
+                    this.flightdao.remove(flightID);
+                    break;
+                }
+                default:
+                    break;
+            }
         }
 
         List<Flight> flights = flightdao.selectAllFlights();
