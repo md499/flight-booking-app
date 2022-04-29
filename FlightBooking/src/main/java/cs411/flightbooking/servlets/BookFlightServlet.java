@@ -103,7 +103,7 @@ public class BookFlightServlet extends HttpServlet {
         if (user_email == null || user_email.equals("")) {
             response.sendRedirect("user");
         } else {
-            this.flightdao.bookFlight(user_email, choseFlight);
+            this.flightdao.bookFlight(choseFlight);
             this.ticketdao.insert(new Ticket(user_email, flight_id));
             response.sendRedirect("../user");
         }
