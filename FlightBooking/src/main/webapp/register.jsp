@@ -39,7 +39,7 @@
                         <div class="input-group has-validation">
                             <span class="input-group-text" id="email-icon" style="background-color: #3a57af "><i class="bi-envelope" style="color: white"></i></span>
                             <input type="email" class="form-control" id="email-in" aria-describedby="email-icon" name="email" placeholder="Email" required>
-                            <%String error_msg = (String)request.getAttribute("error");
+                            <%String error_msg = (String)request.getAttribute("registerError");
                  if (error_msg != null && !error_msg.equals("")){%>
                             <input type="text" id="email-error-msg" hidden value="<%=error_msg%>">
                             <script>
@@ -51,7 +51,7 @@
                                 input.val("");
                                 error.val("");
                             </script>
-                            <%} request.setAttribute("error", "");%>
+                            <%} request.setAttribute("registerError", "");%>
                         </div>
                     </div>
 

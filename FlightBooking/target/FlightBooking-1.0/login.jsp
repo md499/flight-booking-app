@@ -15,9 +15,9 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Flight Booker</title>
+        <title>Flight Booker - Log In</title>
     </head>
-    <body>        
+    <body>       
         <div class="jumbotron d-flex align-items-center min-vh-100">
             <div class="container">
                 <h1>Log In</h1>
@@ -28,7 +28,18 @@
                         <div class="input-group has-validation">
                             <span class="input-group-text" id="email-icon" style="background-color: #3a57af "><i class="bi-envelope" style="color: white"></i></span>
                             <input type="text" class="form-control" id="email-in" aria-describedby="email-icon" name="email" placeholder="Email" required>
+                            <% String err_msg = (String) request.getAttribute("loginError");
+            if (err_msg != null && !err_msg.equals("")) {%>
+                            <input type="text" id="err-msg" hidden value="<%=err_msg%>">
+                            <script>
+                                let error = $("#err-msg");
+                                let err_msg = error.val();
+                                console.log(err_msg);
+                                alert(err_msg);
+                            </script>
+                            <%}%>
                         </div>
+
                     </div>
 
                     <div class="col-12">
@@ -56,9 +67,9 @@
 
         <!-- For refreshing page -->
         <script>
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
-            }
+                                if (window.history.replaceState) {
+                                    window.history.replaceState(null, null, window.location.href);
+                                }
         </script>
     </body>
 </html>

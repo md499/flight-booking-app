@@ -26,14 +26,14 @@
             response.sendRedirect("login.jsp");
             }
         %>
-        
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/FlightBooking">Flight Booking</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -47,23 +47,69 @@
                         </li>
                     </ul>
                     <div class="d-flex nav-item dropdown">
-                            <button class="nav-link active dropdown-toggle" href="#" type="navbarDropdown" id="user-dropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#user-dropdown" aria-expanded="false">
-                                <i class="bi-person-circle"></i>
-                            </button> 
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
-                                <li><a class="dropdown-item" href="logout.jsp">Log Out</a></li>
-                            </ul>
-                        </div>
+                        <button class="nav-link active dropdown-toggle" href="#" type="navbarDropdown" id="user-dropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#user-dropdown" aria-expanded="false">
+                            <i class="bi-person-circle"></i>
+                        </button> 
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="user-dropdown">
+                            <li><a class="dropdown-item" href="logout.jsp">Log Out</a></li>
+                        </ul>
+                    </div>
                 </div>
-                
-               
             </div>
         </nav>
-        
+
         <h1>Welcome! You login successfully</h1>
-        
+
+        <div class="container" id="flight-search-module">
+            <form action="/user/search-flight" method="post">				
+                <div class="form-inputs">
+                    <label for="from" class="form-label">From</label>
+                    <input type="text" class="form-control" id="from-loc" name="from" required>
+                </div>
+                <div class="form-inputs">
+                    <label for="to" class="form-label">To</label>
+                    <input type="text" class="form-control" id="to-loc" name="to" required>
+                </div>
+                <div class="form-inputs">
+                    <label for="date" class="form-label">Date</label>
+                    <div class="input-group has-validation">
+                        <input type="date" class="form-control" id="time-in" name="departureTime" required>
+                    </div>
+                </div>
+
+                <div class = "button"> 
+                    <button type="submit" class="btn btn-primary" id="submit" >Search Flight</button>                        
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Bootstrap Script -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+
+        <!-- Dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.5.3"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+        <!-- For refreshing page -->
+        <script>
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>       
+
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script> 
+
+        <!-- Local JS Files -->
+        <script type="text/javascript" src="script/airport_search/search.js"></script>
+        <script type="text/javascript" src="script/airport_search/main.js"></script>
+
+        <script>
+            AirportInput("#from-loc");
+            AirportInput("#to-loc");
+        </script>
 
         <!-- For refreshing page -->
         <script>

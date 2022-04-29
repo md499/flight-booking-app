@@ -73,8 +73,7 @@
     </header>
 
     <section class="about-section text-center" id="search-flight-section">
-        <!--<div class="jumbotron d-flex align-items-center min-vh-100">-->
-        <form action="search-flight" method="post">    
+        <form action="search-flight" id="search-form" method="post">    
             <div class="container px-4 px-lg-5" id="flight-search-module">
 
                 <h1>Flight Search</h1>
@@ -97,7 +96,7 @@
 
                 </div>    
         </form>
-        <!--</div>-->
+
 
     </section>
 
@@ -124,6 +123,10 @@
     <script>
                         AirportInput("#from-loc");
                         AirportInput("#to-loc");
+
+                        let form = $("#search-form");
+                        let today = new Date();
+                        form.find("#time-in:first").attr("min", today.toISOString().split('T')[0]);
     </script>
 
 </body>
