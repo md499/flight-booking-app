@@ -93,9 +93,6 @@
                         <th scope="col">Arrival</th>
                         <th scope="col">From</th>
                         <th scope="col">To</th>
-                        <th scope="col">Capacity</th>
-                        <th scope="col">Available</th>
-                        <th scope="col">Price</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -114,9 +111,6 @@
                         <td id="arrival-loc-col"><%=flight.getArrivalLocation()%></td>
                         <td id="departure-time-col"><%=flight.getDepartureTimeString()%></td>
                         <td id="arrival-time-col"><%=flight.getArrivalTimeString()%></td>
-                        <td id="capacity-col"><%=flight.getCapacity()%></td>
-                        <td id="available-col"><%=flight.getAvailable()%></td>
-                        <td id="price-col"><%=flight.getPrice()%></td>
                     </tr>
                     <%}}%>
 
